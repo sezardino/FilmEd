@@ -1,6 +1,7 @@
 .list {
   padding-top: 40px;
   padding-bottom: 40px;
+  height: 470px;
 
   &__header {
     display: flex;
@@ -46,6 +47,31 @@
     flex-direction: row;
     justify-content: space-between;
   }
+
+  &__wrapper {
+    position: relative;
+
+  }
+
+  &__arrow {
+    height: 80px;
+
+    cursor: pointer;
+
+    position: absolute;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    &--prev {
+      left: -60px;
+      transform: rotate(180deg) translateY(50%);
+    }
+
+    &--next {
+      right: -60px;
+    }
+  }
 }
 
 .card {
@@ -79,6 +105,7 @@
   }
 
   &__title {
+    font-size: 18px;
     margin-top: 15px;
     color: $main;
   }

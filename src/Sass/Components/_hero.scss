@@ -1,8 +1,9 @@
 .hero {
-  height: 360px;
+  max-height: 360px;
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
+  color: #fff;
 
   .container {
     padding-top: 50px;
