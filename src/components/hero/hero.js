@@ -1,10 +1,7 @@
 import React from 'react';
 
-import poster from './poster1.jpg';
-
 const background = {
-	height: '360px',
-	backgroundImage: `url(${poster})`,
+	backgroundImage: `url(${`https://image.tmdb.org/t/p/w1920_and_h600_multi_faces/yGNnjoIGOdQy3douq60tULY8teK.jpg`})`,
 };
 
 const Hero = () => {

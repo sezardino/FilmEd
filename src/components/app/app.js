@@ -1,7 +1,9 @@
 import React from 'react';
+import {Switch, Route} from 'react-router-dom';
+
 import Header from '../header';
-import Hero from '../hero';
 import Footer from '../footer';
+import {HomePage} from '../pages';
 
 import '../../Sass/app.scss';
 
@@ -10,7 +12,9 @@ const App = () => {
 		<React.Fragment>
 			<Header />
 			<main>
-				<Hero />
+				<Switch>
+					<Route path="/" component={HomePage} />
+				</Switch>
 			</main>
 			<Footer />
 		</React.Fragment>
