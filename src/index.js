@@ -1,10 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Api from './services/api';
-import App from './components/app';
+import {Provider} from 'react-redux';
+import {BrowserRouter as Router} from 'react-router-dom';
+import {FilmsProvider} from './context';
 
+import Api from './services';
+import ErrorBoundary from './components/error-boundary/';
+
+import App from './components/app';
+import store from './store';
 const api = new Api('ru-RU');
 
-console.log(api.getPopularMovies());
-
-ReactDOM.render(<App />, document.querySelector('#root'));
+ReactDOM.render(
+	<Provider store={store}>
+		<ErrorBoundary>
+			<FilmsProvider value={api}>
+				<Router>
+					<App />
+				</Router>
+			</FilmsProvider>
+		</ErrorBoundary>
+	</Provider>,
+	document.querySelector('#root')
+);
