@@ -1,5 +1,8 @@
 import React from 'react';
 
-const {Provider: FilmsProvider, Consumer: FilmsConsumer} = React.createContext();
+const movieContext = React.createContext();
+
+const {Provider: FilmsProvider, Consumer: FilmsConsumer} = movieContext;
 
 export {FilmsProvider, FilmsConsumer};
+export default movieContext;

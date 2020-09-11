@@ -1,5 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {connect} from 'react-redux';
 import {Switch, Route} from 'react-router-dom';
+import movieContext from '../../context';
+import {FilmsProvider} from '../../context';
+import Api from '../../services';
 
 import Header from '../header';
 import Footer from '../footer';
@@ -7,18 +11,24 @@ import {HomePage} from '../pages';
 
 import '../../Sass/app.scss';
 
-const App = () => {
+const App = (props) => {
+	const context = useContext(movieContext);
+	const api = new Api(props.language);
 	return (
-		<React.Fragment>
+		<FilmsProvider value={api}>
 			<Header />
 			<main>
 				<Switch>
-					<Route path="/" component={HomePage} />
+					<Route path="/" exact render={() => <HomePage context={api} />} />
 				</Switch>
 			</main>
 			<Footer />
-		</React.Fragment>
+		</FilmsProvider>
 	);
 };
 
-export default App;
+const mapStateToProps = ({data: {languages}}) => ({
+	language: languages.activeLanguage,
+});
+
+export default connect(mapStateToProps)(App);

@@ -14,11 +14,9 @@ const api = new Api('ru-RU');
 ReactDOM.render(
 	<Provider store={store}>
 		<ErrorBoundary>
-			<FilmsProvider value={api}>
-				<Router>
-					<App />
-				</Router>
-			</FilmsProvider>
+			<Router>
+				<App />
+			</Router>
 		</ErrorBoundary>
 	</Provider>,
 	document.querySelector('#root')

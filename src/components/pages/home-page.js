@@ -1,6 +1,5 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
-import {withService} from '../../hoc/';
 import {ActionCreator} from '../../reducer';
 
 import Hero from '../hero';
@@ -14,11 +13,11 @@ class HomePage extends PureComponent {
 	}
 
 	componentDidUpdate(prevProps) {
-		const {getPopular, getTrends, popularTab, trendsTab} = this.props;
-		if (prevProps.activeTab !== popularTab) {
+		const {getPopular, getTrends, popularTab, trendsTab, language} = this.props;
+		if (prevProps.activeTab !== popularTab || prevProps.language !== language) {
 			getPopular();
 		}
-		if (prevProps.trendsTab !== trendsTab) {
+		if (prevProps.trendsTab !== trendsTab || prevProps.language !== language) {
 			getTrends();
 		}
 	}
@@ -36,29 +35,29 @@ class HomePage extends PureComponent {
 
 const mapStateToProps = (state) => {
 	const {data} = state;
+	const {languages} = data;
 	return {
 		popular: data.popular,
 		trends: data.trends,
-		popularTab: data.popularTab,
-		trendsTab: data.trendsTab,
+		language: languages.activeLanguage,
 	};
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	getPopular: () => {
-		const {service} = ownProps;
-		service.getPopular().then((data) => {
+		const {context} = ownProps;
+		context.getPopular().then((data) => {
 			return dispatch(ActionCreator.GET_DATA(data));
 		});
 	},
 
 	getTrends: () => {
-		const {service} = ownProps;
-		service.getTrends().then((data) => {
+		const {context} = ownProps;
+		context.getTrends().then((data) => {
 			return dispatch(ActionCreator.GET_DATA(data));
 		});
 	},
 	tabChange: (data) => dispatch(ActionCreator.CHANGE_TAB(data)),
 });
 
-export default withService(connect(mapStateToProps, mapDispatchToProps)(HomePage));
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

@@ -1,4 +1,4 @@
-import {tabs, SOURCE} from '../const';
+import {tabs, SOURCE, LANGUAGES} from '../const';
 
 const {POPULAR, TRENDS} = tabs;
 const initialState = {
@@ -12,22 +12,22 @@ const initialState = {
 		tabs: TRENDS,
 		activeTab: TRENDS.today,
 	},
+	languages: {activeLanguage: Object.keys(LANGUAGES)[0], languages: Object.keys(LANGUAGES)},
+	search: {data: []},
 };
 
 const ActionType = {
-	POPULAR: 'POPULAR',
 	GET_DATA: 'GET_DATA',
-	TRAILERS: 'TRAILERS',
-	TRENDS: 'TRENDS',
+	CHANGE_LANGUAGE: 'CHANGE_LANGUAGE',
 	CHANGE_TAB: 'CHANGE_TAB',
+	SEARCH: 'SEARCH',
 };
 
 const ActionCreator = {
 	GET_DATA: (data, source) => ({type: ActionType.GET_DATA, payload: data, source: source}),
-	POPULAR: (data) => ({type: ActionType.POPULAR, payload: data}),
-	TRENDS: (data) => ({type: ActionType.TRENDS, payload: data}),
-	TRAILERS: (data) => ({type: ActionType.TRAILERS, payload: data}),
+	CHANGE_LANGUAGE: (language) => ({type: ActionType.CHANGE_LANGUAGE, payload: language}),
 	CHANGE_TAB: (tab) => ({type: ActionType.CHANGE_TAB, payload: tab}),
+	SEARCH: (data) => ({type: ActionType.SEARCH, payload: data}),
 };
 
 const changeTab = (state, tab) => {
@@ -57,24 +57,14 @@ const getData = (state, action) => {
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
-		case ActionType.GET_DATA: {
+		case ActionType.GET_DATA:
 			return getData(state, action);
-		}
-		case ActionType.POPULAR: {
-			const {data} = state;
-			return {...data, popular: action.payload};
-		}
-		case ActionType.TRENDS: {
-			console.log(action);
-			const {data} = state;
-			return {...data, trends: action.payload};
-		}
-		case ActionType.TRAILERS: {
-			const {data} = state;
-			return {...data, trailers: action.payload};
-		}
+		case ActionType.CHANGE_LANGUAGE:
+			return {...state, languages: {...state.languages, activeLanguage: action.payload}};
 		case ActionType.CHANGE_TAB:
 			return changeTab(state, action.payload);
+		case ActionType.SEARCH:
+			return {...state, search: {data: action.payload}};
 		default:
 			return state;
 	}

@@ -1,13 +1,15 @@
-import {URL, SOURCE} from '../const';
+import {URL, SOURCE, LANGUAGES} from '../const';
 
 class Api {
-	constructor(language = 'ru-RU') {
+	constructor(language) {
 		this.key = '777b90ee2268c6946e784ffda7072fd3';
-		this.language = language;
+		this.language = LANGUAGES[language];
 	}
 
-	getResources = async (url) => {
-		const response = await fetch(`${URL.API()}${url}?api_key=${this.key}&${this.language}`);
+	getResources = async (url, query) => {
+		const response = await fetch(
+			`${URL.API()}${url}?api_key=${this.key}&language=${this.language}&query=${query}`
+		);
 		if (!response.ok) {
 			throw new Error(`Error status ${response.status}`);
 		}
@@ -52,8 +54,12 @@ class Api {
 	getTrends = async () => {
 		const today = await this.getTrendsDay();
 		const thisWeek = await this.getTrendsWeek();
-
 		return {trendsData: {today, thisWeek}, source: SOURCE.TRENDS};
+	};
+
+	getSearch = async (query) => {
+		const data = await this.getResources(`${URL.SEARCH()}`, query);
+		return data.results;
 	};
 
 	_transformTrendsData = (movie) => {

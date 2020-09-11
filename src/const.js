@@ -1,6 +1,7 @@
 const URL = {
 	API: () => 'https://api.themoviedb.org/3',
 	IMAGES: () => 'https://image.tmdb.org/t/p/original',
+	SEARCH: () => '/search/multi',
 	MOVIE: () => '/movie',
 	TV: () => '/tv',
 	POPULAR: () => '/popular',
@@ -18,4 +19,6 @@ const tabs = {
 
 const SOURCE = {POPULAR: 'POPULAR', TRENDS: 'TRENDS'};
 
-export {URL, tabs, SOURCE};
+const LANGUAGES = {EN: 'en-US', RU: 'ru-RU', POL: 'pl-PL'};
+
+export {URL, tabs, SOURCE, LANGUAGES};
