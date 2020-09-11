@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/FilmEd/static/css/main.f341df22.chunk.css",
+    "main.js": "/FilmEd/static/js/main.84eecbf2.chunk.js",
+    "main.js.map": "/FilmEd/static/js/main.84eecbf2.chunk.js.map",
+    "runtime-main.js": "/FilmEd/static/js/runtime-main.d3d0a3ce.js",
+    "runtime-main.js.map": "/FilmEd/static/js/runtime-main.d3d0a3ce.js.map",
+    "static/js/2.2f1aabac.chunk.js": "/FilmEd/static/js/2.2f1aabac.chunk.js",
+    "static/js/2.2f1aabac.chunk.js.map": "/FilmEd/static/js/2.2f1aabac.chunk.js.map",
+    "index.html": "/FilmEd/index.html",
+    "precache-manifest.b13cb137d037f5830ca2842fdba70727.js": "/FilmEd/precache-manifest.b13cb137d037f5830ca2842fdba70727.js",
+    "service-worker.js": "/FilmEd/service-worker.js",
+    "static/css/main.f341df22.chunk.css.map": "/FilmEd/static/css/main.f341df22.chunk.css.map",
+    "static/js/2.2f1aabac.chunk.js.LICENSE.txt": "/FilmEd/static/js/2.2f1aabac.chunk.js.LICENSE.txt",
+    "static/media/search.svg": "/FilmEd/static/media/search.9176a068.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d3d0a3ce.js",
+    "static/js/2.2f1aabac.chunk.js",
+    "static/css/main.f341df22.chunk.css",
+    "static/js/main.84eecbf2.chunk.js"
+  ]
+}
