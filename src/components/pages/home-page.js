@@ -24,11 +24,11 @@ class HomePage extends PureComponent {
 	render() {
 		const {popular, trends, tabChange} = this.props;
 		return (
-			<React.Fragment>
+			<main className="home-page">
 				<Hero />
 				<PopularList listData={popular} onTabClick={tabChange} />
 				<TrendsList listData={trends} onTabClick={tabChange} />
-			</React.Fragment>
+			</main>
 		);
 	}
 }

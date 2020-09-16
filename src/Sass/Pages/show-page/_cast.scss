@@ -1,0 +1,83 @@
+.cast {
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    font-size: 25px;
+    font-weight: 600;
+  }
+
+  &__cast-list {
+    margin-top: 40px;
+  }
+
+  &__see-more {
+    border: none;
+    background-color: transparent;
+    font-size: 20px;
+    color: $black;
+    text-decoration: none;
+
+    &:hover {
+      color: $black;
+    }
+  }
+}
+
+.cast-list {
+  margin-right: 0;
+  padding: 0;
+  list-style: none;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  &__item {
+    border-radius: 5px;
+    width: 138px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-right: 14px;
+  }
+}
+
+.actor {
+  &__wrapper {
+    padding: 10px;
+  }
+
+  .img-wrapper {
+    width: 138px;
+    height: 175px;
+  }
+
+  &__name {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 15px;
+    line-height: 18px;
+  }
+
+  &__link {
+    color: $black;
+
+    &:hover {
+      color: $black;
+    }
+  }
+
+  &__character {
+    font-size: 13px;
+    font-weight: 400;
+  }
+
+  &__episodes-count {
+    font-size: 13px;
+    font-weight: 400;
+    opacity: 0.8;
+  }
+}

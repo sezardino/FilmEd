@@ -1,0 +1,60 @@
+.recommendations {
+  padding-top: 80px;
+  padding-bottom: 80px;
+
+  &__title {
+    font-size: 25px;
+    font-weight: 600;
+  }
+
+  &__recommendations-list {
+    margin-top: 20px;
+  }
+}
+
+
+.recommendations-list {
+  margin-left: 0;
+  margin-bottom: 0;
+  padding: 0;
+  list-style: none;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  &__item {
+    width: 250px;
+    height: 210px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  &__descr {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 20px;
+  }
+
+  &__title {
+    font-size: 20px;
+  }
+
+  &__rating {
+    font-size: 15px;
+    line-height: 16px;
+  }
+
+  .img-wrapper {
+    display: block;
+    width: 100%;
+
+    img {
+      height: 141px;
+    }
+  }
+}

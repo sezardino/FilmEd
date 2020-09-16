@@ -2,9 +2,23 @@
 @import './variables';
 
 @import './Components/header';
-@import './Components/nav';
-@import './Components/hero';
-@import './Components/list';
-@import './Components/footer';
-@import './Components/video';
 @import './Components/spinner';
+@import './Components/footer';
+@import './Components/nav';
+
+.home-page {
+  @import './Pages/home-page/hero';
+  @import './Pages/home-page/list';
+  @import './Pages/home-page/video';
+}
+
+.show-page {
+  @import './Pages/show-page/hero';
+  @import './Pages/show-page/descr';
+  @import './Pages/show-page/content';
+  @import './Pages/show-page/cast';
+  @import './Pages/show-page/seasons';
+  @import './Pages/show-page/review';
+  @import './Pages/show-page/media';
+  @import './Pages/show-page/recommendations';
+}

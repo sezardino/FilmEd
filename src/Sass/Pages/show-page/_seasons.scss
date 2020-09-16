@@ -1,0 +1,63 @@
+.seasons {
+
+  &__title {
+    font-size: 25px;
+    font-weight: 600;
+  }
+
+  &__seasons-list {
+    margin-top: 40px;
+  }
+}
+
+.seasons-list {
+  margin-right: 0;
+  margin-bottom: 0;
+  padding: 0;
+  list-style: none;
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 60px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__img {
+    display: block;
+    min-width: 135px;
+    height: 195px;
+  }
+
+  &__descr {
+    margin-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    padding-right: 20px;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  &__info {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  &__text {
+    margin-top: 20px;
+    font-size: 16px;
+    letter-spacing: 0.3px;
+  }
+}
+
+.img-wrapper {}

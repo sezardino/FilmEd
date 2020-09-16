@@ -26,7 +26,6 @@ const TrendsList = (props) => {
 		listData: {tabs, data, activeTab},
 	} = props;
 	const currentList = useTabs(data, tabs, activeTab);
-
 	return (
 		<List data={currentList} renderFunc={(item, index) => <Card item={item} key={index} />}>
 			<Tabs onTabClick={onTabClick} tabs={tabs} activeTab={activeTab} />
