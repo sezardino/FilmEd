@@ -18,6 +18,7 @@ const initialState = {
 
 const ActionType = {
 	GET_DATA: 'GET_DATA',
+	GET_HERO_BG: 'GET_HERO_BG',
 	CHANGE_LANGUAGE: 'CHANGE_LANGUAGE',
 	CHANGE_TAB: 'CHANGE_TAB',
 	SEARCH: 'SEARCH',
@@ -25,6 +26,7 @@ const ActionType = {
 
 const ActionCreator = {
 	GET_DATA: (data, source) => ({type: ActionType.GET_DATA, payload: data, source: source}),
+	GET_HERO_BG: () => ({type: ActionType.GET_HERO_BG}),
 	CHANGE_LANGUAGE: (language) => ({type: ActionType.CHANGE_LANGUAGE, payload: language}),
 	CHANGE_TAB: (tab) => ({type: ActionType.CHANGE_TAB, payload: tab}),
 	SEARCH: (data) => ({type: ActionType.SEARCH, payload: data}),
@@ -55,10 +57,24 @@ const getData = (state, action) => {
 	}
 };
 
+const getBG = ({data}) => {
+	const {onTv, inTheaters} = data;
+	if (onTv && inTheaters) {
+		if (Math.random() > 0.5) {
+			return onTv[Math.floor(Math.random() * 20)].background;
+		} else {
+			return inTheaters[Math.floor(Math.random() * 20)].background;
+		}
+	}
+};
+
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ActionType.GET_DATA:
 			return getData(state, action);
+		case ActionType.GET_HERO_BG:
+			const bg = getBG(state.popular);
+			return {...state, background: bg};
 		case ActionType.CHANGE_LANGUAGE:
 			return {...state, languages: {...state.languages, activeLanguage: action.payload}};
 		case ActionType.CHANGE_TAB:

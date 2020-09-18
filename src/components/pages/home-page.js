@@ -13,19 +13,22 @@ class HomePage extends PureComponent {
 	}
 
 	componentDidUpdate(prevProps) {
-		const {getPopular, getTrends, popularTab, trendsTab, language} = this.props;
+		const {getPopular, getTrends, popularTab, trendsTab, language, getBG, background} = this.props;
 		if (prevProps.activeTab !== popularTab || prevProps.language !== language) {
 			getPopular();
 		}
 		if (prevProps.trendsTab !== trendsTab || prevProps.language !== language) {
 			getTrends();
 		}
+		if (!background) {
+			getBG();
+		}
 	}
 	render() {
-		const {popular, trends, tabChange} = this.props;
+		const {popular, trends, tabChange, background} = this.props;
 		return (
 			<main className="home-page">
-				<Hero />
+				<Hero background={background} />
 				<PopularList listData={popular} onTabClick={tabChange} />
 				<TrendsList listData={trends} onTabClick={tabChange} />
 			</main>
@@ -40,6 +43,7 @@ const mapStateToProps = (state) => {
 		popular: data.popular,
 		trends: data.trends,
 		language: languages.activeLanguage,
+		background: data.background,
 	};
 };
 
@@ -49,6 +53,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 		context.getPopular().then((data) => {
 			return dispatch(ActionCreator.GET_DATA(data));
 		});
+	},
+
+	getBG: () => {
+		return dispatch(ActionCreator.GET_HERO_BG());
 	},
 
 	getTrends: () => {

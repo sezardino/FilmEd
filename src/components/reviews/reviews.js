@@ -3,6 +3,18 @@ import React, {useState} from 'react';
 const Reviews = ({data = []}) => {
 	const [full, setFull] = useState(false);
 	const count = !full ? 1 : data.length;
+
+	if (data.length === 0) {
+		return (
+			<section className="reviews">
+				<h2 className="reviews__title">
+					Reviews <span className="reviews__count">{data.length}</span>
+				</h2>
+				<p>The are now reviews</p>
+			</section>
+		);
+	}
+
 	return (
 		<section className="reviews">
 			<h2 className="reviews__title">

@@ -31,6 +31,15 @@ const App = (props) => {
 							},
 						}) => <ShowPage dataId={id} context={api} />}
 					/>
+					<Route
+						path="/movie/:id?"
+						exact
+						render={({
+							match: {
+								params: {id},
+							},
+						}) => <ShowPage dataId={id} context={api} />}
+					/>
 				</Switch>
 			</main>
 			<Footer />

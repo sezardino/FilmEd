@@ -1,5 +1,5 @@
 import Api from './api';
-import {findTab} from './utils';
+import {findTab, getData} from './utils';
 
-export {findTab};
+export {findTab, getData};
 export default Api;

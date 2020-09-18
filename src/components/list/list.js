@@ -16,6 +16,7 @@ const List = (props) => {
 
 	const [currentList, setCurrentList] = useState([]);
 	const [showCount, setShowCount] = useState([0, 4]);
+
 	useEffect(() => {
 		setCurrentList(shownList(data, showCount));
 	}, [data, showCount]);
@@ -36,7 +37,6 @@ const List = (props) => {
 			return [a, b];
 		});
 	};
-
 	return (
 		<section className="list">
 			<div className="container list__wrapper">

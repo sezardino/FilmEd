@@ -231,10 +231,10 @@ class Api {
 		id: movie.id,
 		originalTitle: movie.original_title,
 		title: movie.title,
-		background: `${URL.IMAGES()}${movie.backdrop_path}`,
+		background: movie.backdrop_path,
 		originalLanguage: movie.original_language,
 		rating: movie.vote_average,
-		poster: `${URL.IMAGES()}${movie.poster_path}`,
+		poster: movie.poster_path,
 		releaseDate: movie.release_date,
 	});
 
@@ -242,10 +242,10 @@ class Api {
 		id: movie.id,
 		originalTitle: movie.original_name,
 		title: movie.name,
-		background: `${URL.IMAGES()}${movie.backdrop_path}`,
+		background: movie.backdrop_path,
 		originalLanguage: movie.original_language,
 		rating: movie.vote_average,
-		poster: `${URL.IMAGES()}${movie.poster_path}`,
+		poster: movie.poster_path,
 		releaseDate: movie.first_air_date,
 	});
 }

@@ -15,7 +15,7 @@ const Seasons = ({data = []}) => {
 							<div className="seasons-list__descr">
 								<h3 className="seasons-list__title">{name}</h3>
 								<p className="seasons-list__info">
-									{airDate.slice(0, 4)} | {episodeCount} Episodes
+									{airDate && `${airDate.slice(0, 4)} |`} {episodeCount} Episodes
 								</p>
 								<p className="seasons-list__text">{overview}</p>
 							</div>

@@ -32,6 +32,8 @@ const URL = {
 	TRENDING_DAY: () => '/trending/all/day',
 };
 
+const SHOW_TABS = {CAST: 'cast', REVIEWS: 'reviews', SEASONS: 'seasons'};
+
 const TYPE = {
 	MOVIE: 'movie',
 	TV: 'tv',
@@ -46,4 +48,4 @@ const SOURCE = {POPULAR: 'POPULAR', TRENDS: 'TRENDS'};
 
 const LANGUAGES = {EN: 'en-US', RU: 'ru-RU', POL: 'pl-PL'};
 
-export {URL, tabs, SOURCE, LANGUAGES, TYPE};
+export {URL, tabs, SOURCE, LANGUAGES, TYPE, SHOW_TABS};

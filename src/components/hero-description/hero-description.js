@@ -60,7 +60,6 @@ const Hero = ({data}) => {
 									<a href="#" className="creators-list__link">
 										{item.name}
 									</a>
-									<span className="creators-list__link-descr">Creator</span>
 								</li>
 							);
 						})}

@@ -30,7 +30,6 @@ const reducer = (state = initialState, action) => {
 			return {...state, data: {...data, keywords: action.payload}};
 
 		case ActionType.GET_EXTERNAL_IDS:
-			console.log(action);
 			return {...state, data: {...data, externalIds: action.payload}};
 
 		case ActionType.GET_CAST:

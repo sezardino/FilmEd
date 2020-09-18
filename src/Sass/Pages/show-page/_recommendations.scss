@@ -1,6 +1,7 @@
 .recommendations {
   padding-top: 80px;
   padding-bottom: 80px;
+  position: relative;
 
   &__title {
     font-size: 25px;
@@ -9,6 +10,21 @@
 
   &__recommendations-list {
     margin-top: 20px;
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+
+    &--next {
+      right: -30px;
+    }
+
+    &--prev {
+      left: -30px;
+    }
   }
 }
 
@@ -23,7 +39,6 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
-  justify-content: space-between;
 
   &__item {
     width: 250px;
@@ -31,6 +46,11 @@
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-right: 82px;
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 
   &__descr {
@@ -57,4 +77,6 @@
       height: 141px;
     }
   }
+
+
 }
