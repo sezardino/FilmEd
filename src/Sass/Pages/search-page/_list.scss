@@ -1,26 +1,21 @@
-.seasons {
+.search {
+  padding-top: 100px;
+  padding-bottom: 100px;
 
-
-
-  &__seasons-list {
-    margin-top: 101px;
-  }
+  &__search-list {}
 }
 
-.seasons-list {
+.search-list {
   margin-right: 0;
   margin-bottom: 0;
   padding: 0;
   list-style: none;
 
+
+
   &__item {
     display: flex;
-    padding-bottom: 40px;
-    border-bottom: 1px solid #C4C4C4;
-    flex-direction: row;
-    align-items: flex-start;
-    overflow: hidden;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 
     &:last-child {
       margin-bottom: 0;
@@ -28,12 +23,13 @@
   }
 
   &__img {
-    display: block;
     min-width: 173px;
+    max-width: 173px;
     height: 253px;
     background-color: gray;
-    border-radius: 7px;
+    border-radius: 10px;
     overflow: hidden;
+    display: block;
 
     img {
       width: 100%;
@@ -43,33 +39,31 @@
 
   &__descr {
     margin-left: 30px;
-    padding-top: 42px;
-    padding-right: 20px;
+    color: $black;
+    text-decoration: none;
+
   }
 
   &__title {
+    margin-top: 40px;
     font-weight: 800;
     font-size: 18px;
+    line-height: 14px;
+
   }
 
-  &__info {
+  &__production-year {
     margin-top: 30px;
-    font-weight: 600;
+    font-weight: 300;
     font-size: 16px;
-    line-height: 20px;
-
-    span {
-      font-size: 20px;
-    }
+    line-height: 14px;
   }
 
-  &__text {
+  &__overview {
     margin-top: 30px;
     font-weight: 300;
     font-size: 14px;
     line-height: 24px;
-
-    letter-spacing: 0.05em;
   }
 }
 

@@ -1,0 +1,36 @@
+.tabs {
+  &__title {
+    min-width: 330px;
+    padding: 22px 88px;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 14px;
+    color: $white;
+    background-color: #3C5B74;
+    border-radius: 7px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    position: relative;
+
+    &:after {
+      content: '';
+      border: 10px solid transparent;
+      border-left: 10px solid #3C5B74;
+      position: absolute;
+      display: block;
+      width: 1px;
+      height: 1px;
+      top: 50%;
+      right: 0;
+      transform: translate(100%, -50%);
+    }
+  }
+
+  &__item {
+    margin: 0;
+
+    &:first-child {
+      margin-left: 100px;
+    }
+  }
+}

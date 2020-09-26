@@ -1,25 +1,32 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {useFull} from '../../hooks';
 
 const Reviews = ({data = []}) => {
-	const [full, setFull] = useState(false);
-	const count = !full ? 1 : data.length;
+	const {full, changeFull} = useFull();
+	const count = !full ? 3 : data.length;
 
 	if (data.length === 0) {
 		return (
 			<section className="reviews">
-				<h2 className="reviews__title">
-					Reviews <span className="reviews__count">{data.length}</span>
-				</h2>
-				<p>The are now reviews</p>
+				<p>The are no reviews</p>
 			</section>
 		);
 	}
 
+	const seeAll = !full && (
+		<button className="reviews__se-more" onClick={changeFull}>
+			See all reviews
+		</button>
+	);
+
+	const hide = full && (
+		<button className="reviews__se-more" onClick={changeFull}>
+			Hide
+		</button>
+	);
+
 	return (
 		<section className="reviews">
-			<h2 className="reviews__title">
-				Reviews <span className="reviews__count">{data.length}</span>
-			</h2>
 			<ul className="reviews__list">
 				{data.map((item, index) => {
 					if (index < count) {
@@ -27,33 +34,26 @@ const Reviews = ({data = []}) => {
 					}
 				})}
 			</ul>
-			{!full && (
-				<button className="reviews__se-more" onClick={() => setFull(true)}>
-					See all reviews
-				</button>
-			)}
-			{full && (
-				<button className="reviews__se-more" onClick={() => setFull(false)}>
-					Hide
-				</button>
-			)}
+			{data.length < count && seeAll && hide}
 		</section>
 	);
 };
 
 const Review = ({data}) => {
 	const {author, content = '', id} = data;
-	const [full, setFull] = useState(false);
-	const count = !full ? (content.length < 800 ? content.length : 800) : content.length;
+	const {full, changeFull} = useFull();
+	const count = !full ? (content.length < 400 ? content.length : 400) : content.length;
 	return (
 		<li className="reviews__list-item" key={id}>
 			<div className="reviews__descr review">
-				<h3 className="review__title">A review by {author}</h3>
-				<p className="review__author">Written by {author}</p>
+				<div className="review__wrapper">
+					<p className="review__title">Written by </p>
+					<p className="review__author">{author}</p>
+				</div>
 				<div className="review__text">
 					{content.slice(0, count)}
 					{!full && (
-						<button className="review__text-see-more" onClick={() => setFull(true)}>
+						<button className="review__text-see-more" onClick={changeFull}>
 							...read the rest
 						</button>
 					)}

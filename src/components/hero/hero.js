@@ -1,5 +1,5 @@
 import React from 'react';
-// 'https://image.tmdb.org/t/p/w1920_and_h600_multi_faces/yGNnjoIGOdQy3douq60tULY8teK.jpg'
+
 const backgroundImage = (background) => ({
 	backgroundImage: `url(https://image.tmdb.org/t/p/w1920_and_h600_multi_faces${background})`,
 });

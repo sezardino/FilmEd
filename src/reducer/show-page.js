@@ -21,16 +21,15 @@ const ActionCreator = {
 };
 
 const reducer = (state = initialState, action) => {
-	const {data} = state;
 	switch (action.type) {
 		case ActionType.GET_SHOW_DATA:
 			return {...state, data: action.payload};
 
 		case ActionType.GET_KEYWORDS:
-			return {...state, data: {...data, keywords: action.payload}};
+			return {...state, keywords: action.payload};
 
 		case ActionType.GET_EXTERNAL_IDS:
-			return {...state, data: {...data, externalIds: action.payload}};
+			return {...state, externalIds: action.payload};
 
 		case ActionType.GET_CAST:
 			return {...state, cast: action.payload};

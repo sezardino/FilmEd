@@ -18,9 +18,16 @@ const MOVIE = {
 	MOVIE_RECOMMENDATIONS: (id) => `/movie/${id}/recommendations`,
 };
 
+const PERSON = {
+	PERSON_ID: (id) => `/person/${id}`,
+	PERSON_CREDITS: (id) => `/person/${id}/combined_credits`,
+	PERSON_EXTERNAL_IDS: (id) => `/person/${id}/external_ids`,
+};
+
 const URL = {
 	...TV,
 	...MOVIE,
+	...PERSON,
 	API: () => 'https://api.themoviedb.org/3',
 	IMAGES: () => 'https://image.tmdb.org/t/p/original',
 	SEARCH: () => '/search/multi',
@@ -31,6 +38,8 @@ const URL = {
 	TRENDING_WEEK: () => '/trending/all/week',
 	TRENDING_DAY: () => '/trending/all/day',
 };
+
+const GENDER = {1: 'Female', 2: `Male`};
 
 const SHOW_TABS = {CAST: 'cast', REVIEWS: 'reviews', SEASONS: 'seasons'};
 
@@ -46,6 +55,6 @@ const tabs = {
 
 const SOURCE = {POPULAR: 'POPULAR', TRENDS: 'TRENDS'};
 
-const LANGUAGES = {EN: 'en-US', RU: 'ru-RU', POL: 'pl-PL'};
+const LANGUAGES = {EN: 'en-US', RU: 'ru-RU', PL: 'pl-PL'};
 
-export {URL, tabs, SOURCE, LANGUAGES, TYPE, SHOW_TABS};
+export {URL, tabs, SOURCE, LANGUAGES, TYPE, SHOW_TABS, GENDER};

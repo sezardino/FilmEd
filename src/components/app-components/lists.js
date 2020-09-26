@@ -14,7 +14,11 @@ const PopularList = (props) => {
 	const currentList = useTabs(data, tabs, activeTab);
 
 	return (
-		<List data={currentList} renderFunc={(item, index) => <Card item={item} key={index} />}>
+		<List
+			title="What's Popular"
+			data={currentList}
+			count={5}
+			renderFunc={(item, index) => <Card item={item} key={index} />}>
 			<Tabs onTabClick={onTabClick} tabs={tabs} activeTab={activeTab} />
 		</List>
 	);
@@ -27,10 +31,35 @@ const TrendsList = (props) => {
 	} = props;
 	const currentList = useTabs(data, tabs, activeTab);
 	return (
-		<List data={currentList} renderFunc={(item, index) => <Card item={item} key={index} />}>
+		<List
+			title="Trends"
+			data={currentList}
+			count={5}
+			renderFunc={(item, index) => <Card item={item} key={index} />}>
 			<Tabs onTabClick={onTabClick} tabs={tabs} activeTab={activeTab} />
 		</List>
 	);
 };
 
-export {PopularList, TrendsList};
+const RecommendationsList = (props) => {
+	return (
+		<List
+			title="Recommendations"
+			data={props.data}
+			count={5}
+			renderFunc={(item, index) => <Card item={item} key={index} />}
+		/>
+	);
+};
+
+const WorksList = (props) => {
+	return (
+		<List
+			data={props.data}
+			count={4}
+			renderFunc={(item, index) => <Card item={item} key={index} />}
+		/>
+	);
+};
+
+export {PopularList, TrendsList, RecommendationsList, WorksList};

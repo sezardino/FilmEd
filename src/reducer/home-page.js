@@ -13,7 +13,7 @@ const initialState = {
 		activeTab: TRENDS.today,
 	},
 	languages: {activeLanguage: Object.keys(LANGUAGES)[0], languages: Object.keys(LANGUAGES)},
-	search: {data: []},
+	search: {},
 };
 
 const ActionType = {
@@ -21,7 +21,6 @@ const ActionType = {
 	GET_HERO_BG: 'GET_HERO_BG',
 	CHANGE_LANGUAGE: 'CHANGE_LANGUAGE',
 	CHANGE_TAB: 'CHANGE_TAB',
-	SEARCH: 'SEARCH',
 };
 
 const ActionCreator = {
@@ -29,7 +28,6 @@ const ActionCreator = {
 	GET_HERO_BG: () => ({type: ActionType.GET_HERO_BG}),
 	CHANGE_LANGUAGE: (language) => ({type: ActionType.CHANGE_LANGUAGE, payload: language}),
 	CHANGE_TAB: (tab) => ({type: ActionType.CHANGE_TAB, payload: tab}),
-	SEARCH: (data) => ({type: ActionType.SEARCH, payload: data}),
 };
 
 const changeTab = (state, tab) => {
@@ -79,8 +77,6 @@ const reducer = (state = initialState, action) => {
 			return {...state, languages: {...state.languages, activeLanguage: action.payload}};
 		case ActionType.CHANGE_TAB:
 			return changeTab(state, action.payload);
-		case ActionType.SEARCH:
-			return {...state, search: {data: action.payload}};
 		default:
 			return state;
 	}

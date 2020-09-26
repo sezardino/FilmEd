@@ -1,40 +1,25 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer';
 
 import Hero from '../hero';
 import {PopularList, TrendsList} from '../app-components';
+import {useLoad} from '../../hooks';
 
-class HomePage extends PureComponent {
-	componentDidMount() {
-		const {getPopular, getTrends} = this.props;
-		getPopular();
-		getTrends();
-	}
-
-	componentDidUpdate(prevProps) {
-		const {getPopular, getTrends, popularTab, trendsTab, language, getBG, background} = this.props;
-		if (prevProps.activeTab !== popularTab || prevProps.language !== language) {
-			getPopular();
-		}
-		if (prevProps.trendsTab !== trendsTab || prevProps.language !== language) {
-			getTrends();
-		}
-		if (!background) {
-			getBG();
-		}
-	}
-	render() {
-		const {popular, trends, tabChange, background} = this.props;
-		return (
-			<main className="home-page">
-				<Hero background={background} />
-				<PopularList listData={popular} onTabClick={tabChange} />
-				<TrendsList listData={trends} onTabClick={tabChange} />
-			</main>
-		);
-	}
-}
+const HomePage = (props) => {
+	const {getPopular, getTrends, getBG, popular, trends, tabChange, background} = props;
+	const bg = !!popular.data.onTv.length && !!trends.data.today.length;
+	useLoad(getPopular);
+	useLoad(getTrends);
+	useLoad(getBG, bg);
+	return (
+		<main className="home-page">
+			<Hero background={background} />
+			<PopularList listData={popular} onTabClick={tabChange} />
+			<TrendsList listData={trends} onTabClick={tabChange} />
+		</main>
+	);
+};
 
 const mapStateToProps = (state) => {
 	const {data} = state;

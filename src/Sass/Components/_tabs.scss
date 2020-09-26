@@ -1,0 +1,35 @@
+.tabs {
+  width: 100%;
+  margin-right: 0;
+  margin-bottom: 0;
+  padding: 0;
+  border-bottom: 2px solid #3C5B74;
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+
+  &__item {
+    cursor: pointer;
+    margin-right: 40px;
+    padding: 19px 27px;
+    color: $black;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 14px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__item-active {
+    border-bottom: 5px solid #3C5B74;
+  }
+}

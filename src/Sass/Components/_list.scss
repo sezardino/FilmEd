@@ -1,7 +1,11 @@
 .list {
   padding-top: 73px;
   padding-bottom: 75px;
-  // height: 760px;
+
+  &__wrapper {
+    height: 560px;
+
+  }
 
   &__header {
     display: flex;
@@ -75,7 +79,6 @@
 }
 
 .card {
-  min-width: 150px;
   width: 175px;
   border: none;
   background-color: transparent;
@@ -83,17 +86,26 @@
   cursor: pointer;
   align-items: flex-start;
 
+
   &__img {
-    width: 100%;
+    border-radius: 7px;
+    overflow: hidden;
+    min-width: 150px;
+    width: 175px;
+    background-color: grey;
     height: calc(175px * 1.5);
     border-radius: 10px;
+
+    img {
+      width: 100%;
+    }
   }
 
   &__rating {
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    background-color: $tabColor;
+    background-color: $ratingColor;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -101,7 +113,7 @@
     font-size: 14px;
     font-weight: bold;
 
-    color: $ratingColor;
+    color: $white;
 
     position: absolute;
     top: calc(175px * 1.5 - 22.5px);

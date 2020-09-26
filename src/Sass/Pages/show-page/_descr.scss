@@ -1,73 +1,80 @@
 .descr {
-  // padding-top: 80px;
 
   &__title {
-    font-size: 32px;
-    font-weight: 900;
+    margin-top: 50px;
+    font-weight: 800;
+    font-size: 35px;
 
     &--production-year {
-      opacity: 0.8;
-      font-weight: 400;
+      font-weight: 300;
+      font-size: 25px;
+
+      margin-left: 20px;
     }
   }
 
-  &__trailer-link {
-    margin-top: 10px;
-    display: block;
-    font-size: 20px;
-    color: $white;
-    font-weight: 900;
+  &__extra-info {
+    display: flex;
+    margin-top: 31px;
+    font-size: 40px;
+    line-height: 14px;
   }
 
   &__genre-list {
-    margin-top: 10px;
+    margin-top: 31px;
   }
 
   &__original-language {
-    margin-top: 10px;
+    font-weight: normal;
     font-size: 16px;
+    margin-left: 20px;
   }
 
   &__run-time {
-    margin-top: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    color: $ratingColor;
+    margin-right: 20px;
   }
 
   &__user-rating {
-    margin-top: 10px;
 
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    color: $ratingColor;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 14px;
+
+    &--title {
+      padding-bottom: 20px;
+    }
 
     &--rating {
-      display: inline-block;
-      background-color: $black;
-      width: 50px;
-      height: 50px;
-      border-radius: 100%;
-
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: center;
-      font-weight: 900;
-      font-size: 20px;
 
-      margin-right: 10px;
+      background-color: $ratingColor;
+      width: 64px;
+      height: 153px;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+
+      color: $white;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 14px;
+
+      padding-bottom: 20px;
+      margin-right: 15px;
     }
   }
 
-  &__tagline {
-    margin-top: 10px;
-    font-size: 18px;
-    font-style: italic;
-    opacity: 0.8;
-  }
 
-  &__overview {
-    margin-top: 10px;
-  }
 
   &__creators-list {
-    margin-top: 10px;
+    margin-top: 31px;
   }
 
   &__links-list {
@@ -76,6 +83,28 @@
 
   &__keywords {
     margin-top: 10px;
+  }
+
+  &__trailer {
+    margin-top: 129px;
+    margin-left: 100px;
+    display: flex;
+    align-items: center;
+    color: $ratingColor;
+    text-decoration: none;
+
+    &:hover {
+      color: $ratingColor;
+    }
+
+
+    &-title {
+      margin-left: 20px;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 14px;
+      width: 100px;
+    }
   }
 }
 
@@ -103,16 +132,24 @@
 }
 
 .overview {
+  margin-top: 57px;
+  margin-left: 190px;
+  color: $black;
 
   &__title {
+    font-weight: bold;
     font-size: 20px;
-    font-weight: 700;
+    line-height: 14px;
   }
 
   &__descr {
-    margin-top: 10px;
-    font-size: 16px;
+    margin-top: 27px;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 35px;
+    letter-spacing: 0.04em;
   }
+
 }
 
 .creators-list {
@@ -120,14 +157,19 @@
   margin-bottom: 0;
   padding: 0;
 
+  display: flex;
+
   &__item {
     display: flex;
     flex-direction: column;
+    margin-right: 10px;
   }
 
   &__link {
     color: $white;
-    font-style: 16px;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 14px;
 
     &:hover {
       color: $white
@@ -135,7 +177,11 @@
   }
 
   &__link-descr {
+    margin-top: 15px;
+    font-weight: 300;
     font-size: 14px;
+    line-height: 14px;
+    opacity: 0.8;
   }
 }
 
@@ -159,13 +205,16 @@
 }
 
 .keywords {
+  margin-top: 31px;
+
   &__title {
-    font-size: 20px;
-    font-weight: 700;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 14px;
   }
 
   &__list {
-    margin-top: 10px;
+    margin-top: 15px;
     margin-left: 0;
     margin-bottom: 0;
     padding: 0;
@@ -177,22 +226,20 @@
     align-items: flex-start;
 
     &-item {
-      box-sizing: border-box;
-      margin-right: 10px;
+      margin-right: 4px;
       margin-bottom: 10px;
-      background-color: $white;
-      opacity: 0.8;
-      padding: 8px;
-      border-radius: 5px;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 14px;
     }
 
     &-link {
-      color: $black;
-      padding: 8px;
+      color: $white;
+      padding: 8px 8px 8px 0;
+      text-decoration: underline;
 
       &:hover {
-        color: $black;
-        text-decoration: none;
+        color: $white;
       }
     }
   }

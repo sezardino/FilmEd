@@ -1,16 +1,18 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {useActive} from '../../hooks';
 
 const Tabs = (props) => {
-	const {activeTab} = props;
-	const {onTabClick} = props;
-	const [active, setActiveTab] = useState(activeTab);
+	const {activeTab, onTabClick} = props;
+	const {returned: active, activeChange} = useActive(activeTab);
 	const tabs = Object.values(props.tabs);
 
 	const tabHandler = (id) => {
-		setActiveTab(id);
+		if (activeTab === id) {
+			return;
+		}
+		activeChange(id);
 		onTabClick(id);
 	};
-
 	return (
 		<ul className="list__tabs">
 			{tabs.map((item, index) => {

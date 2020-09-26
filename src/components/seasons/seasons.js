@@ -3,7 +3,6 @@ import React from 'react';
 const Seasons = ({data = []}) => {
 	return (
 		<section className="seasons">
-			<h2 className="seasons__title">Seasons</h2>
 			<ul className="seasons__seasons-list seasons-list">
 				{data.map((item) => {
 					const {id, name, poster, overview, episodeCount, airDate = ''} = item;
@@ -15,7 +14,8 @@ const Seasons = ({data = []}) => {
 							<div className="seasons-list__descr">
 								<h3 className="seasons-list__title">{name}</h3>
 								<p className="seasons-list__info">
-									{airDate && `${airDate.slice(0, 4)} |`} {episodeCount} Episodes
+									{airDate && `${airDate.slice(0, 4)} `} <span>&middot;</span> {episodeCount}{' '}
+									Episodes
 								</p>
 								<p className="seasons-list__text">{overview}</p>
 							</div>

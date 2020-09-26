@@ -1,3 +1,3 @@
-import {PopularList, TrendsList} from './lists';
+import {PopularList, TrendsList, RecommendationsList, WorksList} from './lists';
 
-export {PopularList, TrendsList};
+export {PopularList, TrendsList, RecommendationsList, WorksList};

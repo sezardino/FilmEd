@@ -2,23 +2,45 @@
 @import './variables';
 
 @import './Components/header';
+
+.header {
+  @import './Components/nav';
+}
+
 @import './Components/spinner';
 @import './Components/footer';
-@import './Components/nav';
+@import './Components/list';
+@import './Components/tabs';
+
+
 
 .home-page {
   @import './Pages/home-page/hero';
-  @import './Pages/home-page/list';
   @import './Pages/home-page/video';
 }
 
 .show-page {
   @import './Pages/show-page/hero';
   @import './Pages/show-page/descr';
-  @import './Pages/show-page/content';
   @import './Pages/show-page/cast';
   @import './Pages/show-page/seasons';
   @import './Pages/show-page/review';
-  @import './Pages/show-page/media';
   @import './Pages/show-page/recommendations';
+  @import './Pages/show-page/content';
+}
+
+.search-page {
+  @import './Pages/search-page/list';
+  @import './Pages/search-page/tabs';
+  @import './Pages/search-page/search';
+}
+
+.person-page {
+  padding: 75px 0;
+  display: grid;
+  grid-template-columns: 367px 1fr;
+  @import'./Pages/person-page/person-page';
+  @import'./Pages/person-page/information';
+  @import'./Pages/person-page/info-list';
+  @import'./Pages/person-page/biography';
 }
