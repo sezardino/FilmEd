@@ -7,8 +7,8 @@ import logo from './logo.png';
 import LanguageBar from '../language-bar';
 
 const Header = () => {
-	const {returned: searchActive, activeChange: searchChange} = useActive();
-	const {returned: languageActive, activeChange: languageChange} = useActive();
+	const {active: searchActive, activeChange: searchChange} = useActive();
+	const {active: languageActive, activeChange: languageChange} = useActive();
 
 	return (
 		<header className="header">

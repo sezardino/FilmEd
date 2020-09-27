@@ -1,10 +1,17 @@
 .list {
   padding-top: 73px;
-  padding-bottom: 75px;
 
   &__wrapper {
-    height: 560px;
+    min-height: 560px;
 
+  }
+
+  &__list {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 
   &__header {
@@ -52,9 +59,6 @@
   &__content-wrapper {
     margin-top: 80px;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     position: relative;
   }
 
@@ -86,14 +90,19 @@
   cursor: pointer;
   align-items: flex-start;
 
+  margin-right: 58px;
+
+  &:last-child {
+    margin: 0;
+  }
+
 
   &__img {
     border-radius: 7px;
     overflow: hidden;
-    min-width: 150px;
-    width: 175px;
+    min-width: 175px;
+    height: 262px;
     background-color: grey;
-    height: calc(175px * 1.5);
     border-radius: 10px;
 
     img {

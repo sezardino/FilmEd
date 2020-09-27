@@ -9,6 +9,7 @@ import {
 	_transformTVData,
 	_transformPersonData,
 	_transformPersonCreditsData,
+	_transformSearchData,
 } from './api-utils';
 class Api {
 	constructor(language) {
@@ -144,10 +145,10 @@ class Api {
 		switch (type) {
 			case TYPE.TV:
 				data = await this.getResources(URL.TV_RECOMMENDATIONS(id));
-				return data.results.map(_transformRecommendations);
+				return data.results.map((item) => _transformRecommendations(item, TYPE.TV));
 			case TYPE.MOVIE:
 				data = await this.getResources(URL.MOVIE_RECOMMENDATIONS(id));
-				return data.results.map(_transformRecommendations);
+				return data.results.map((item) => _transformRecommendations(item, TYPE.MOVIE));
 			default:
 				return;
 		}
@@ -155,7 +156,9 @@ class Api {
 
 	getSearch = async (query) => {
 		const data = await this.getResources(`${URL.SEARCH()}`, query);
-		return data;
+		const searchData = data.results.map(_transformSearchData);
+		console.log(data);
+		return {...data, results: [...searchData]};
 	};
 
 	getPerson = async (id) => {

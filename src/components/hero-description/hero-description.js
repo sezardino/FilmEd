@@ -1,8 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import facebook from './facebook.png';
-import instagram from './instagram.png';
-import twitter from './twitter.png';
+// import facebook from './facebook.png';
+// import instagram from './instagram.png';
+// import twitter from './twitter.png';
 import trailer from './trailer.png';
 
 const Hero = ({data}) => {
@@ -18,7 +18,7 @@ const Hero = ({data}) => {
 		overview,
 		creators = [],
 		keywords = [],
-		externalIds = [],
+		// externalIds = [],
 	} = data;
 	const withImageStyle = {
 		backgroundImage: `linear-gradient(0deg, rgba(0, 36, 63, 0.7), rgba(0, 36, 63, 0.7)),
@@ -55,7 +55,7 @@ const Hero = ({data}) => {
 							})}
 						</ul>
 						<div className="descr__extra-info">
-							<p className="descr__run-time">{runTime}m</p>
+							{runTime && <p className="descr__run-time">{runTime}m</p>}
 							&middot;
 							<p className="descr__original-language">{language.toUpperCase()}</p>
 						</div>
@@ -113,7 +113,7 @@ const Hero = ({data}) => {
 					</div>
 				</div>
 			</div>
-			<div className="container hero__wrapper">
+			<div className="container hero__wrapper--sub">
 				<a href="#" className="descr__trailer">
 					<img src={trailer} alt="trailer" />
 					<p className="descr__trailer-title">Play Trailer</p>

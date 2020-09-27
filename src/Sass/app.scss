@@ -36,11 +36,13 @@
 }
 
 .person-page {
-  padding: 75px 0;
+  padding-top: 75px;
   display: grid;
   grid-template-columns: 367px 1fr;
   @import'./Pages/person-page/person-page';
   @import'./Pages/person-page/information';
   @import'./Pages/person-page/info-list';
   @import'./Pages/person-page/biography';
+  @import'./Pages/person-page/list';
+  @import'./Pages/person-page/works-list';
 }

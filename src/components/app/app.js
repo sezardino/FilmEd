@@ -1,23 +1,21 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {Switch, Route, useHistory} from 'react-router-dom';
-import {FilmsProvider} from '../../context';
-import Api from '../../services';
+import {Switch, Route} from 'react-router-dom';
 
 import Header from '../header';
 import Footer from '../footer';
 import {HomePage, PersonPage, SearchPage, ShowPage} from '../pages';
 
 import '../../Sass/app.scss';
+import {useMovieContext, useMovieHistory} from '../../hooks';
 
-const App = (props) => {
-	const api = new Api(props.language);
-	const history = useHistory();
+const App = () => {
+	const context = useMovieContext();
+	const history = useMovieHistory();
 	return (
-		<FilmsProvider value={api}>
+		<React.Fragment>
 			<Header />
 			<Switch>
-				<Route path="/" exact render={() => <HomePage context={api} history={history} />} />
+				<Route path="/" exact render={() => <HomePage context={context} history={history} />} />
 				<Route
 					path="/show/:id?"
 					exact
@@ -25,7 +23,7 @@ const App = (props) => {
 						match: {
 							params: {id},
 						},
-					}) => <ShowPage dataId={id} context={api} history={history} />}
+					}) => <ShowPage dataId={id} context={context} history={history} />}
 				/>
 				<Route
 					path="/movie/:id?"
@@ -34,7 +32,7 @@ const App = (props) => {
 						match: {
 							params: {id},
 						},
-					}) => <ShowPage dataId={id} context={api} history={history} />}
+					}) => <ShowPage dataId={id} context={context} history={history} />}
 				/>
 				<Route
 					path="/search/:query?"
@@ -43,7 +41,7 @@ const App = (props) => {
 						match: {
 							params: {query},
 						},
-					}) => <SearchPage query={query} context={api} />}
+					}) => <SearchPage query={query} context={context} />}
 				/>
 				<Route
 					path="/person/:id?"
@@ -52,16 +50,12 @@ const App = (props) => {
 						match: {
 							params: {id},
 						},
-					}) => <PersonPage id={id} context={api} />}
+					}) => <PersonPage id={id} context={context} />}
 				/>
 			</Switch>
 			<Footer />
-		</FilmsProvider>
+		</React.Fragment>
 	);
 };
 
-const mapStateToProps = ({data: {languages}}) => ({
-	language: languages.activeLanguage,
-});
-
-export default connect(mapStateToProps)(App);
+export default App;

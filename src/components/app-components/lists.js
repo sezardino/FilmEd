@@ -52,7 +52,7 @@ const RecommendationsList = (props) => {
 	);
 };
 
-const WorksList = (props) => {
+const PersonWorksList = (props) => {
 	return (
 		<List
 			data={props.data}
@@ -62,4 +62,4 @@ const WorksList = (props) => {
 	);
 };
 
-export {PopularList, TrendsList, RecommendationsList, WorksList};
+export {PopularList, TrendsList, RecommendationsList, PersonWorksList};

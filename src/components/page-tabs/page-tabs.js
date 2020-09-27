@@ -8,7 +8,9 @@ const Tab = ({field, label, activeTab, onTabClick}) => {
 	return (
 		<li
 			className={`tabs__item ${field === activeTab && `tabs__item-active`}`}
-			onClick={() => onTabClick(field)}>
+			onClick={() => {
+				onTabClick(field);
+			}}>
 			{label}
 		</li>
 	);

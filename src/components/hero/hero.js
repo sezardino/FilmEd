@@ -5,9 +5,10 @@ const backgroundImage = (background) => ({
 });
 
 const Hero = (props) => {
-	const {background} = props;
+	let {background} = props;
+	background = background ? backgroundImage(background) : null;
 	return (
-		<section className="hero" style={backgroundImage(background)}>
+		<section className="hero" style={background}>
 			<div className="hero__wrapper">
 				<div className="container">
 					<h1 className="hidden">Movie service FilmEd.io is all free</h1>

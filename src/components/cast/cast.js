@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import {useFull} from '../../hooks';
 
@@ -28,11 +28,13 @@ const Cast = ({data = []}) => {
 					const count = full ? cast.length : 6;
 					if (index <= count) {
 						return castItem(item);
+					} else {
+						return null;
 					}
 				})}
 			</ul>
 
-			{full && (
+			{full && crew.length > 0 && (
 				<React.Fragment>
 					<h3 className="cast__title">Crew</h3>
 					<ul className="cast__cast-list cast-list">

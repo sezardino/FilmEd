@@ -1,0 +1,29 @@
+.info-list {
+  margin-left: 0;
+  padding-left: 38px;
+  list-style: none;
+
+  border-left: 1px solid #3C5B74;
+
+  &__item {
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__descr {
+    font-weight: bold;
+    font-size: 17px;
+  }
+
+  &__data {
+    margin-top: 20px;
+
+    font-weight: 300;
+    font-size: 17px;
+  }
+}

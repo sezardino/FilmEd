@@ -39,7 +39,7 @@ const LanguageBar = (props) => {
 	);
 };
 
-const mapStateToProps = ({data: {languages}}) => ({
+const mapStateToProps = ({logic: {languages}}) => ({
 	currentLanguage: languages.activeLanguage,
 	languages: languages.languages,
 });

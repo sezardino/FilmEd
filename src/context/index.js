@@ -1,8 +1,17 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import Api from '../services/';
 
-const movieContext = React.createContext();
+const MovieContext = React.createContext();
 
-const {Provider: FilmsProvider, Consumer: FilmsConsumer} = movieContext;
+const FilmsProvider = (props) => {
+	const {children, language} = props;
+	return <MovieContext.Provider value={new Api(language)}>{children}</MovieContext.Provider>;
+};
 
-export {FilmsProvider, FilmsConsumer};
-export default movieContext;
+const mapStateToProps = ({logic: {languages}}) => ({
+	language: languages.activeLanguage,
+});
+
+export {MovieContext};
+export default connect(mapStateToProps)(FilmsProvider);

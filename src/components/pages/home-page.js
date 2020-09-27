@@ -7,10 +7,10 @@ import {PopularList, TrendsList} from '../app-components';
 import {useLoad} from '../../hooks';
 
 const HomePage = (props) => {
-	const {getPopular, getTrends, getBG, popular, trends, tabChange, background} = props;
+	const {getPopular, getTrends, getBG, popular, trends, tabChange, background, language} = props;
 	const bg = !!popular.data.onTv.length && !!trends.data.today.length;
-	useLoad(getPopular);
-	useLoad(getTrends);
+	useLoad(getPopular, language);
+	useLoad(getTrends, language);
 	useLoad(getBG, bg);
 	return (
 		<main className="home-page">
@@ -21,16 +21,12 @@ const HomePage = (props) => {
 	);
 };
 
-const mapStateToProps = (state) => {
-	const {data} = state;
-	const {languages} = data;
-	return {
-		popular: data.popular,
-		trends: data.trends,
-		language: languages.activeLanguage,
-		background: data.background,
-	};
-};
+const mapStateToProps = ({logic, data}) => ({
+	popular: data.popular,
+	trends: data.trends,
+	language: logic.languages.activeLanguage,
+	background: data.background,
+});
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	getPopular: () => {

@@ -10,15 +10,17 @@ const List = (props) => {
 	return (
 		<section className="list">
 			<div className="container list__wrapper">
-				<header className="list__header">
-					{title && <h2 className="list__title">{title}</h2>}
-					{props.children}
-				</header>
+				{title && (
+					<header className="list__header">
+						{title && <h2 className="list__title">{title}</h2>}
+						{props.children}
+					</header>
+				)}
 				<div className="list__content-wrapper">
 					<p className="list__arrow list__arrow--next">
 						<img src={next} alt="next" onClick={() => arrowHolder(1)} />
 					</p>
-					{currentList.map(renderFunc)}
+					<ul className="list__list">{currentList.map(renderFunc)}</ul>
 					<p className="list__arrow list__arrow--prev">
 						<img src={prev} alt="prev" onClick={() => arrowHolder(-1)} />
 					</p>

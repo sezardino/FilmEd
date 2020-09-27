@@ -45,11 +45,33 @@ const getData = (id, type, context, dispatch) => {
 	}
 };
 
-const sortFunction = (a, b) => {
+const linkTo = (type, id) => {
+	return type === TYPE.MOVIE
+		? `/movie/${id}`
+		: type === TYPE.TV
+		? `/show/${id}`
+		: type === TYPE.PERSON
+		? `/person/${id}`
+		: null;
+};
+
+const sortByPopularity = (a, b) => {
 	if (a.vote < b.vote) {
 		return 1;
 	}
 	if (a.vote > b.vote) {
+		return -1;
+	}
+	return 0;
+};
+
+const sortByDate = (a, b) => {
+	const dateA = new Date(a.release);
+	const dateB = new Date(b.release);
+	if (+dateA < +dateB) {
+		return 1;
+	}
+	if (+dateA > +dateB) {
 		return -1;
 	}
 	return 0;
@@ -64,4 +86,4 @@ const shownList = (data, showCount, count = 0) => {
 	return currentList;
 };
 
-export {findTab, getData, sortFunction, shownList};
+export {findTab, getData, sortByPopularity, shownList, sortByDate, linkTo};

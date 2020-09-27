@@ -1,4 +1,4 @@
-import {tabs, SOURCE, LANGUAGES} from '../const';
+import {tabs, SOURCE} from '../const';
 
 const {POPULAR, TRENDS} = tabs;
 const initialState = {
@@ -12,21 +12,17 @@ const initialState = {
 		tabs: TRENDS,
 		activeTab: TRENDS.today,
 	},
-	languages: {activeLanguage: Object.keys(LANGUAGES)[0], languages: Object.keys(LANGUAGES)},
-	search: {},
 };
 
 const ActionType = {
 	GET_DATA: 'GET_DATA',
 	GET_HERO_BG: 'GET_HERO_BG',
-	CHANGE_LANGUAGE: 'CHANGE_LANGUAGE',
 	CHANGE_TAB: 'CHANGE_TAB',
 };
 
 const ActionCreator = {
 	GET_DATA: (data, source) => ({type: ActionType.GET_DATA, payload: data, source: source}),
 	GET_HERO_BG: () => ({type: ActionType.GET_HERO_BG}),
-	CHANGE_LANGUAGE: (language) => ({type: ActionType.CHANGE_LANGUAGE, payload: language}),
 	CHANGE_TAB: (tab) => ({type: ActionType.CHANGE_TAB, payload: tab}),
 };
 
@@ -73,8 +69,6 @@ const reducer = (state = initialState, action) => {
 		case ActionType.GET_HERO_BG:
 			const bg = getBG(state.popular);
 			return {...state, background: bg};
-		case ActionType.CHANGE_LANGUAGE:
-			return {...state, languages: {...state.languages, activeLanguage: action.payload}};
 		case ActionType.CHANGE_TAB:
 			return changeTab(state, action.payload);
 		default:

@@ -31,6 +31,8 @@ const Reviews = ({data = []}) => {
 				{data.map((item, index) => {
 					if (index < count) {
 						return <Review data={item} key={item.id} />;
+					} else {
+						return null;
 					}
 				})}
 			</ul>

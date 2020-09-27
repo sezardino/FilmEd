@@ -1,5 +1,27 @@
-import {GENDER} from '../const';
-import {sortFunction} from './utils';
+import {GENDER, TYPE} from '../const';
+
+const _transformMovieData = (movie) => ({
+	type: TYPE.MOVIE,
+	id: movie.id,
+	originalTitle: movie.original_title,
+	title: movie.title,
+	background: movie.backdrop_path,
+	originalLanguage: movie.original_language,
+	rating: movie.vote_average,
+	poster: movie.poster_path,
+	releaseDate: movie.release_date,
+});
+
+const _transformTVData = (movie) => ({
+	type: TYPE.TV,
+	id: movie.id,
+	originalTitle: movie.original_name,
+	title: movie.name,
+	originalLanguage: movie.original_language,
+	rating: movie.vote_average,
+	poster: movie.poster_path,
+	releaseDate: movie.first_air_date,
+});
 
 const _transformExternalIds = (data) => [
 	{source: 'facebook', link: `https://www.facebook.com/${data.facebook_id}`},
@@ -7,15 +29,24 @@ const _transformExternalIds = (data) => [
 	{source: 'twitter', link: `https://twitter.com/${data.twitter_id}`},
 ];
 
-const _transformTrendsData = (movie) => {
-	if (movie.media_type === 'movie') {
+const _transformData = (movie) => {
+	if (movie.media_type === TYPE.MOVIE) {
 		return _transformMovieData(movie);
-	} else {
+	} else if (movie.media_type === TYPE.TV) {
+		return _transformTVData(movie);
+	}
+};
+
+const _transformTrendsData = (movie) => {
+	if (movie.media_type === TYPE.MOVIE) {
+		return _transformMovieData(movie);
+	} else if (movie.media_type === TYPE.TV) {
 		return _transformTVData(movie);
 	}
 };
 
 const _transformMovieDetails = (movie) => ({
+	type: 'movie',
 	background: movie.backdrop_path,
 	genres: movie.genres,
 	homepage: movie.homepage,
@@ -73,33 +104,24 @@ const _transformDetails = (tv) => {
 	};
 };
 
-const _transformRecommendations = (tv) => ({
+const _transformSearchData = (data) => {
+	const {known_for = []} = data;
+	return {
+		id: data.id,
+		name: data.name || data.title,
+		poster: data.poster_path || data.profile_path,
+		knownFor: {department: data.known_for_department, data: known_for.map(_transformData)},
+		overview: data.overview,
+		type: data.media_type,
+	};
+};
+
+const _transformRecommendations = (tv, type) => ({
+	type,
 	id: tv.id,
 	name: tv.name || tv.title,
-	poster: tv.backdrop_path,
+	poster: tv.poster_path,
 	rating: tv.vote_average,
-});
-
-const _transformMovieData = (movie) => ({
-	id: movie.id,
-	originalTitle: movie.original_title,
-	title: movie.title,
-	background: movie.backdrop_path,
-	originalLanguage: movie.original_language,
-	rating: movie.vote_average,
-	poster: movie.poster_path,
-	releaseDate: movie.release_date,
-});
-
-const _transformTVData = (movie) => ({
-	id: movie.id,
-	originalTitle: movie.original_name,
-	title: movie.name,
-	background: movie.backdrop_path,
-	originalLanguage: movie.original_language,
-	rating: movie.vote_average,
-	poster: movie.poster_path,
-	releaseDate: movie.first_air_date,
 });
 
 const _transformPersonData = (person) => ({
@@ -117,31 +139,27 @@ const _transformPersonData = (person) => ({
 });
 
 const _transformPersonCreditsData = (data) => {
-	const cast = data.cast
-		.map((item) => ({
-			id: item.id,
-			poster: item.poster_path,
-			character: item.character,
-			release: item.release_date,
-			type: item.media_type,
-			vote: item.vote_average,
-			title: item.title || item.original_name,
-			episodeCount: item.episode_count,
-		}))
-		.sort(sortFunction);
-	const crew = data.crew
-		.map((item) => ({
-			id: item.id,
-			type: item.type,
-			poster: item.poster_path,
-			release: item.release_date,
-			title: item.title || item.original_name,
-			vote: item.vote_average,
-			job: item.job,
-			department: item.department,
-		}))
-		.sort(sortFunction);
-	return [...cast, ...crew];
+	const cast = data.cast.map((item) => ({
+		id: item.id,
+		poster: item.poster_path,
+		character: item.character,
+		release: item.release_date,
+		type: item.media_type,
+		vote: item.vote_average,
+		title: item.title || item.original_name,
+		episodeCount: item.episode_count,
+	}));
+	const crew = data.crew.map((item) => ({
+		id: item.id,
+		type: item.type,
+		poster: item.poster_path,
+		release: item.release_date,
+		title: item.title || item.original_name,
+		vote: item.vote_average,
+		job: item.job,
+		department: item.department,
+	}));
+	return {cast, crew};
 };
 
 export {
@@ -154,4 +172,5 @@ export {
 	_transformTVData,
 	_transformPersonData,
 	_transformPersonCreditsData,
+	_transformSearchData,
 };

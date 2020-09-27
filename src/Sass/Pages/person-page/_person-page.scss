@@ -1,0 +1,19 @@
+.sidebar {}
+
+.mainbar {
+  padding-left: 46px;
+}
+
+.popularity {
+  margin-top: 84px;
+
+  &__title {
+    padding-left: 45px;
+    font-weight: 600;
+    font-size: 20px;
+  }
+}
+
+.works {
+  margin-top: 108px;
+}

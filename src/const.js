@@ -46,6 +46,7 @@ const SHOW_TABS = {CAST: 'cast', REVIEWS: 'reviews', SEASONS: 'seasons'};
 const TYPE = {
 	MOVIE: 'movie',
 	TV: 'tv',
+	PERSON: 'person',
 };
 
 const tabs = {
@@ -57,4 +58,6 @@ const SOURCE = {POPULAR: 'POPULAR', TRENDS: 'TRENDS'};
 
 const LANGUAGES = {EN: 'en-US', RU: 'ru-RU', PL: 'pl-PL'};
 
-export {URL, tabs, SOURCE, LANGUAGES, TYPE, SHOW_TABS, GENDER};
+const WORK_LIST_TYPE = {ACTING: 'Acting art', CREW: 'Crew'};
+
+export {URL, tabs, SOURCE, LANGUAGES, TYPE, SHOW_TABS, GENDER, WORK_LIST_TYPE};
