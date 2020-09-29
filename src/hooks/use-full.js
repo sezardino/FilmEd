@@ -7,7 +7,7 @@ const useFull = () => {
 		setFull((prev) => !prev);
 	};
 
-	return {full, changeFull};
+	return [full, changeFull];
 };
 
 export default useFull;

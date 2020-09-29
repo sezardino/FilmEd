@@ -1,14 +1,14 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {useActive} from '../../hooks';
+import {useActive, useToggle} from '../../hooks';
 import SearchBar from '../search-bar';
 
 import logo from './logo.png';
 import LanguageBar from '../language-bar';
 
 const Header = () => {
-	const {active: searchActive, activeChange: searchChange} = useActive();
-	const {active: languageActive, activeChange: languageChange} = useActive();
+	const [searchActive, searchChange] = useToggle();
+	const [languageActive, languageChange] = useActive();
 
 	return (
 		<header className="header">

@@ -20,6 +20,7 @@ const _transformTVData = (movie) => ({
 	originalLanguage: movie.original_language,
 	rating: movie.vote_average,
 	poster: movie.poster_path,
+	background: movie.backdrop_path,
 	releaseDate: movie.first_air_date,
 });
 

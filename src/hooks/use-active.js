@@ -6,12 +6,14 @@ const useActive = (current) => {
 		if (current !== active) {
 			if (current) {
 				setActive(current);
+				return;
 			} else {
 				setActive((prev) => !prev);
+				return;
 			}
 		}
 	};
-	return {active, activeChange};
+	return [active, activeChange];
 };
 
 export default useActive;

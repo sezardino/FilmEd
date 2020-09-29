@@ -2,7 +2,7 @@ import React from 'react';
 import {useFull} from '../../hooks';
 
 const Reviews = ({data = []}) => {
-	const {full, changeFull} = useFull();
+	const [full, changeFull] = useFull();
 	const count = !full ? 3 : data.length;
 
 	if (data.length === 0) {

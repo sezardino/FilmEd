@@ -6,7 +6,7 @@ import prev from './prev.png';
 const List = (props) => {
 	const {data = [], renderFunc, title, count} = props;
 
-	const {currentList, arrowHolder} = useList(data, count);
+	const [currentList, arrowHolder] = useList(data, count);
 	return (
 		<section className="list">
 			<div className="container list__wrapper">

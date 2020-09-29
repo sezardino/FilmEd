@@ -6,7 +6,7 @@ import noImage from './no-image.svg';
 
 const Cast = ({data = []}) => {
 	const {cast = [], crew = []} = data;
-	const {full, changeFull} = useFull();
+	const [full, changeFull] = useFull();
 	return (
 		<section className="cast">
 			<header className="cast__header">

@@ -24,7 +24,7 @@ const useList = (list = [], count) => {
 		});
 	};
 
-	return {currentList, arrowHolder};
+	return [currentList, arrowHolder];
 };
 
 export default useList;

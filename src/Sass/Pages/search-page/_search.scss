@@ -1,4 +1,8 @@
 .search {
+  &__wrapper {
+    min-height: 37vh;
+  }
+
   &__content {
     margin-top: 75px;
   }

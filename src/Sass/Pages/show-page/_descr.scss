@@ -93,6 +93,8 @@
     color: $ratingColor;
     text-decoration: none;
 
+    cursor: pointer;
+
     &:hover {
       color: $ratingColor;
     }

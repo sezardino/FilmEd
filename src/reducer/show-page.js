@@ -9,6 +9,7 @@ const ActionType = {
 	GET_REVIEWS: 'GET_REVIEWS',
 	GET_EXTERNAL_IDS: 'GET_EXTERNAL_IDS',
 	GET_RECOMMENDATIONS: 'GET_RECOMMENDATIONS',
+	GET_TRAILERS: 'GET_TRAILERS',
 };
 
 const ActionCreator = {
@@ -18,6 +19,7 @@ const ActionCreator = {
 	GET_REVIEWS: (data) => ({type: ActionType.GET_REVIEWS, payload: data}),
 	GET_EXTERNAL_IDS: (data) => ({type: ActionType.GET_EXTERNAL_IDS, payload: data}),
 	GET_RECOMMENDATIONS: (data) => ({type: ActionType.GET_RECOMMENDATIONS, payload: data}),
+	GET_TRAILERS: (data) => ({type: ActionType.GET_TRAILERS, payload: data}),
 };
 
 const reducer = (state = initialState, action) => {
@@ -39,6 +41,10 @@ const reducer = (state = initialState, action) => {
 
 		case ActionType.GET_RECOMMENDATIONS:
 			return {...state, recommendations: action.payload};
+
+		case ActionType.GET_TRAILERS:
+			console.log(action.payload);
+			return {...state, trailers: action.payload};
 
 		default:
 			return state;

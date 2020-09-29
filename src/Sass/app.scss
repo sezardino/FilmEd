@@ -11,12 +11,13 @@
 @import './Components/footer';
 @import './Components/list';
 @import './Components/tabs';
+@import './Components/video';
 
 
 
 .home-page {
   @import './Pages/home-page/hero';
-  @import './Pages/home-page/video';
+  // @import './Pages/home-page/video';
 }
 
 .show-page {

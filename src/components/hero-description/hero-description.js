@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import {Link} from 'react-router-dom';
+import {useActive} from '../../hooks';
+import Video from '../video';
 // import facebook from './facebook.png';
 // import instagram from './instagram.png';
 // import twitter from './twitter.png';
 import trailer from './trailer.png';
 
-const Hero = ({data}) => {
+const Hero = ({data, trailers = []}) => {
 	let {
 		background,
 		poster,
@@ -20,6 +22,8 @@ const Hero = ({data}) => {
 		keywords = [],
 		// externalIds = [],
 	} = data;
+	const [active, activeChange] = useActive(false);
+
 	const withImageStyle = {
 		backgroundImage: `linear-gradient(0deg, rgba(0, 36, 63, 0.7), rgba(0, 36, 63, 0.7)),
 		url(//image.tmdb.org/t/p/w1920_and_h800_multi_faces${background})`,
@@ -114,15 +118,16 @@ const Hero = ({data}) => {
 				</div>
 			</div>
 			<div className="container hero__wrapper--sub">
-				<a href="#" className="descr__trailer">
+				<div className="descr__trailer" onClick={activeChange}>
 					<img src={trailer} alt="trailer" />
 					<p className="descr__trailer-title">Play Trailer</p>
-				</a>
+				</div>
 				<div className="descr__overview overview">
 					<h3 className="overview__title">Overview</h3>
 					<p className="overview__descr">{overview}</p>
 				</div>
 			</div>
+			{active && <Video id={trailers[0].key} active={active} activeChange={activeChange} />}
 		</section>
 	);
 };

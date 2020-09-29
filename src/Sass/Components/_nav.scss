@@ -44,14 +44,14 @@
 
   input {
     padding: 5px 0;
-    padding-right: 140px;
-    padding-left: 10px;
+    padding-right: 30px;
+    padding-left: 20px;
     background-color: rgba($white, 0.1);
     outline: rgba($white, 0.1);
     border: none;
     box-sizing: border-box;
     border-radius: 20px;
-    width: 100%;
+    width: 81%;
 
     cursor: text;
     color: $white;
@@ -59,7 +59,7 @@
 
   button {
     padding: 0 44px;
-    font-style: 15px;
+    font-size: 15px;
     font-weight: 600;
     height: 100%;
     color: $white;
@@ -70,16 +70,21 @@
 
     position: absolute;
     top: 0;
-    right: 0;
+    right: 45px;
   }
 
   &--active {
     margin-left: 140px;
-    width: 72%;
+    width: 80%;
     min-width: 300px;
     max-width: 775px;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 0;
 
-
+    .search {
+      margin-right: 20px;
+    }
 
     box-sizing: border-box;
 

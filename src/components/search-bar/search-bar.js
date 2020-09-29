@@ -1,16 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useInput, useMovieHistory} from '../../hooks';
 
 import icon from './search.svg';
 
 import {ActionCreator} from '../../reducer';
 
 const SearchBar = (props) => {
-	const {clickHandler, active} = props;
-	const history = useHistory();
-
-	const [query, setQuery] = useState(props.searchQuery);
+	const {clickHandler, active, searchQuery} = props;
+	const history = useMovieHistory();
+	const [query, setQuery] = useInput(searchQuery);
 
 	if (!active) {
 		return (
@@ -40,17 +39,22 @@ const SearchBar = (props) => {
 				className="search"
 				value={query}
 				autoFocus
-				// onBlur={() => setActiveSearch(false)}
 				onChange={(evt) => {
 					setQuery(evt.target.value);
 				}}
 				onKeyDown={(evt) => {
 					if (evt.key === 'Escape') {
-						// setActiveSearch(false);
 					}
 				}}
 			/>
 			<button className="search__button">Search</button>
+			<img
+				src={icon}
+				alt="search"
+				className="nav__search search"
+				tabIndex="2"
+				onClick={clickHandler}
+			/>
 		</form>
 	);
 };

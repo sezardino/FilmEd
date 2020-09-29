@@ -3,7 +3,7 @@ import {useActive} from '../../hooks';
 
 const Tabs = (props) => {
 	const {activeTab, onTabClick} = props;
-	const {active, activeChange} = useActive(activeTab);
+	const [active, activeChange] = useActive(activeTab);
 	const tabs = Object.values(props.tabs);
 
 	const tabHandler = (id) => {

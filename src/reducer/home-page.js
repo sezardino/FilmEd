@@ -54,10 +54,13 @@ const getData = (state, action) => {
 const getBG = ({data}) => {
 	const {onTv, inTheaters} = data;
 	if (onTv && inTheaters) {
+		const number = Math.floor(Math.random() * 20);
 		if (Math.random() > 0.5) {
-			return onTv[Math.floor(Math.random() * 20)].background;
+			const bg = onTv[number].background;
+			return bg;
 		} else {
-			return inTheaters[Math.floor(Math.random() * 20)].background;
+			const bg = inTheaters[number].background;
+			return bg;
 		}
 	}
 };

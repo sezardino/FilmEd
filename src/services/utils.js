@@ -16,6 +16,9 @@ const getData = (id, type, context, dispatch) => {
 				.getDetails(id, TYPE.MOVIE)
 				.then((data) => dispatch(ActionCreator.GET_SHOW_DATA(data)));
 			context
+				.getTrailers(id, TYPE.MOVIE)
+				.then((data) => dispatch(ActionCreator.GET_TRAILERS(data)));
+			context
 				.getKeywords(id, TYPE.MOVIE)
 				.then((data) => dispatch(ActionCreator.GET_KEYWORDS(data)));
 
@@ -30,6 +33,10 @@ const getData = (id, type, context, dispatch) => {
 			break;
 		case TYPE.TV:
 			context.getDetails(id, TYPE.TV).then((data) => dispatch(ActionCreator.GET_SHOW_DATA(data)));
+			context.getTrailers(id, TYPE.TV).then((data) => {
+				console.log(data);
+				dispatch(ActionCreator.GET_TRAILERS(data));
+			});
 			context.getKeywords(id, TYPE.TV).then((data) => dispatch(ActionCreator.GET_KEYWORDS(data)));
 			context.getCast(id, TYPE.TV).then((data) => dispatch(ActionCreator.GET_CAST(data)));
 			context

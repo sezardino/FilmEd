@@ -140,6 +140,20 @@ class Api {
 		}
 	};
 
+	getTrailers = async (id, type) => {
+		let data;
+		switch (type) {
+			case TYPE.TV:
+				data = await this.getResources(URL.TV_TRAILERS(id));
+				return data.results;
+			case TYPE.MOVIE:
+				data = await this.getResources(URL.MOVIE_TRAILERS(id));
+				return data.results;
+			default:
+				return;
+		}
+	};
+
 	getRecommendations = async (id, type) => {
 		let data;
 		switch (type) {

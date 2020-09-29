@@ -12,15 +12,14 @@ import {RecommendationsList} from '../app-components';
 import {useActive, useLoad} from '../../hooks';
 
 const ShowPage = (props) => {
-	const {data, getData, dataId, language, recommendations = [], cast, reviews} = props;
+	const {data, getData, dataId, language, recommendations = [], cast, reviews, trailers} = props;
 	const {seasons} = data;
-	const {active, activeChange} = useActive('cast');
-
+	const [active, activeChange] = useActive('cast');
 	useLoad(getData, [language, dataId]);
-
 	return (
 		<main className="show-page">
-			<Hero data={data} />
+			<Hero data={data} trailers={trailers} />
+
 			<section className="content">
 				<div className="container content__wrapper">
 					<PageTabs>
@@ -45,13 +44,14 @@ const ShowPage = (props) => {
 
 const mapStateToProps = ({
 	logic,
-	show: {data, keywords, externalIds, cast, reviews, recommendations},
+	show: {data, keywords, externalIds, cast, reviews, recommendations, trailers},
 }) => ({
 	data: {...data, keywords, externalIds},
 	cast: cast,
 	reviews: reviews,
 	recommendations: recommendations,
 	language: logic.languages.activeLanguage,
+	trailers: trailers,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

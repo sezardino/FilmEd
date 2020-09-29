@@ -13,10 +13,9 @@ const SEARCH_TABS = {movies: TYPE.MOVIE, people: TYPE.PERSON, tvShows: TYPE.TV};
 const SearchPage = (props) => {
 	const {data = [], searchQuery, getData, query, language} = props;
 	const {results = [], total_pages, total_results} = data;
-	const {active, activeChange} = useActive('movies');
+	const [active, activeChange] = useActive('movies');
 
 	const activeList = results.filter((item) => item.type === SEARCH_TABS[active]);
-	console.log(activeList);
 	useLoad(() => getData(searchQuery || query), [searchQuery || query, language]);
 	return (
 		<main className="search-page">
@@ -37,7 +36,7 @@ const SearchPage = (props) => {
 								const {department, data = []} = knownFor;
 
 								return (
-									<li className="search-list__item" key={id}>
+									<li className="search-list__item" key={`${type}${id}`}>
 										<p className="search-list__img img-wrapper">
 											<img
 												src={poster ? `//image.tmdb.org/t/p/w220_and_h330_face${poster}` : null}
@@ -55,7 +54,7 @@ const SearchPage = (props) => {
 														<span>
 															Known for:{' '}
 															{data.map(({name, title, id, type}) => (
-																<Link to={linkTo(type, id)} key={id}>
+																<Link to={linkTo(type, id)} key={`${type}${id}`}>
 																	{name || title}{' '}
 																</Link>
 															))}

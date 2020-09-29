@@ -4,7 +4,6 @@ import {TYPE} from '../../const';
 import {sortByDate} from '../../services/utils';
 
 const WorksList = ({data = [], title}) => {
-	console.log(data);
 	const dataWithRelease = data.filter((item) => item.release).sort(sortByDate);
 	const dataWithoutRelease = data.filter((item) => !item.release);
 	const years = [...new Set(dataWithRelease.map(({release = ''}) => release.slice(0, 4)))];
@@ -36,7 +35,7 @@ const WorksList = ({data = [], title}) => {
 				<ul className="works__list works__list--no-date">
 					{dataWithoutRelease.map(({title, id, character, job, type}) => {
 						return (
-							<li className="works__list-item " key={id}>
+							<li className="works__list-item " key={`${character}${id}`}>
 								<span className="dot">&middot;</span>
 								<Link to={type === TYPE.TV ? `/show/${id}` : `/movie/${id}`} className="title">
 									{title}{' '}

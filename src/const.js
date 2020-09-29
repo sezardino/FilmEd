@@ -6,6 +6,7 @@ const TV = {
 	TV_REVIEW: (id) => `/tv/${id}/reviews`,
 	TV_EXTERNAL_IDS: (id) => `/tv/${id}/external_ids`,
 	TV_RECOMMENDATIONS: (id) => `/tv/${id}/recommendations`,
+	TV_TRAILERS: (id) => `/tv/${id}/videos`,
 };
 
 const MOVIE = {
@@ -16,6 +17,7 @@ const MOVIE = {
 	MOVIE_REVIEW: (id) => `/movie/${id}/reviews`,
 	MOVIE_EXTERNAL_IDS: (id) => `/movie/${id}/external_ids`,
 	MOVIE_RECOMMENDATIONS: (id) => `/movie/${id}/recommendations`,
+	MOVIE_TRAILERS: (id) => `/movie/${id}/videos`,
 };
 
 const PERSON = {
