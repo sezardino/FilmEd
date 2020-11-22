@@ -1,4 +1,4 @@
-import {useEffect, useCallback, useMemo} from 'react';
+import {useEffect, useCallback} from 'react';
 
 const useLoad = (fun, dep) => {
 	const nDep = dep.length > 0 ? [...dep] : [dep];
