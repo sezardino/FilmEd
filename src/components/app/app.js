@@ -15,7 +15,6 @@ const App = () => {
 		<React.Fragment>
 			<Header />
 			<Switch>
-				<Route exact render={() => <HomePage context={context} history={history} />} />
 				<Route
 					path="/show/:id?"
 					exact
@@ -52,6 +51,7 @@ const App = () => {
 						},
 					}) => <PersonPage id={id} context={context} />}
 				/>
+				<Route exact render={() => <HomePage context={context} history={history} />} />
 			</Switch>
 			<Footer />
 		</React.Fragment>
