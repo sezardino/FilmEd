@@ -1,3 +1,3 @@
-import {findTab, getData, shownList} from './utils';
+import {findTab, getData, shownList, makeUniqueArr} from './utils';
 
-export {findTab, getData, shownList};
+export {findTab, getData, shownList, makeUniqueArr};

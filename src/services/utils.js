@@ -34,7 +34,6 @@ const getData = (id, type, context, dispatch) => {
 		case TYPE.TV:
 			context.getDetails(id, TYPE.TV).then((data) => dispatch(ActionCreator.GET_SHOW_DATA(data)));
 			context.getTrailers(id, TYPE.TV).then((data) => {
-				console.log(data);
 				dispatch(ActionCreator.GET_TRAILERS(data));
 			});
 			context.getKeywords(id, TYPE.TV).then((data) => dispatch(ActionCreator.GET_KEYWORDS(data)));
@@ -93,4 +92,15 @@ const shownList = (data, showCount, count = 0) => {
 	return currentList;
 };
 
-export {findTab, getData, sortByPopularity, shownList, sortByDate, linkTo};
+const makeUniqueArr = (arr1 = [], arr2 = []) => {
+	const newArr = [];
+	[...arr1, ...arr2].map((item) => {
+		const match = newArr.find((someItem) => someItem.id === item.id);
+		if (!match) {
+			newArr.push(item);
+		}
+	});
+	return newArr;
+};
+
+export {findTab, getData, sortByPopularity, shownList, sortByDate, linkTo, makeUniqueArr};

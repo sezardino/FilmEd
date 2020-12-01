@@ -43,7 +43,6 @@ const reducer = (state = initialState, action) => {
 			return {...state, recommendations: action.payload};
 
 		case ActionType.GET_TRAILERS:
-			console.log(action.payload);
 			return {...state, trailers: action.payload};
 
 		default:

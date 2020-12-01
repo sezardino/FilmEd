@@ -1,3 +1,3 @@
-import ShowPage from './show';
+import ShowPage from './show-container';
 
 export default ShowPage;
