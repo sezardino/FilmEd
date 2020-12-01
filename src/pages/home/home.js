@@ -1,51 +1,16 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer';
 
 import {PopularList, TrendsList, Hero} from './components';
-import {useLoad} from '../../hooks';
 
 const HomePage = (props) => {
-	const {getPopular, getTrends, getBG, popular, trends, tabChange, background, language} = props;
-	const bg = !!popular.data.onTv.length && !!trends.data.today.length;
-	useLoad(getPopular, language);
-	useLoad(getTrends, language);
-	useLoad(getBG, bg);
+	const {popular, trends, tabHandler, background} = props;
 	return (
 		<main className="home-page">
 			<Hero background={background} />
-			<PopularList listData={popular} onTabClick={tabChange} />
-			<TrendsList listData={trends} onTabClick={tabChange} />
+			<PopularList listData={popular} tabHandler={tabHandler} />
+			<TrendsList listData={trends} tabHandler={tabHandler} />
 		</main>
 	);
 };
 
-const mapStateToProps = ({logic, data}) => ({
-	popular: data.popular,
-	trends: data.trends,
-	language: logic.languages.activeLanguage,
-	background: data.background,
-});
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-	getPopular: () => {
-		const {context} = ownProps;
-		context.getPopular().then((data) => {
-			return dispatch(ActionCreator.GET_DATA(data));
-		});
-	},
-
-	getBG: () => {
-		return dispatch(ActionCreator.GET_HERO_BG());
-	},
-
-	getTrends: () => {
-		const {context} = ownProps;
-		context.getTrends().then((data) => {
-			return dispatch(ActionCreator.GET_DATA(data));
-		});
-	},
-	tabChange: (data) => dispatch(ActionCreator.CHANGE_TAB(data)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default HomePage;

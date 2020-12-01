@@ -7,7 +7,7 @@ import Tabs from '../../../common/tabs';
 
 const TrendsList = (props) => {
 	const {
-		onTabClick,
+		tabHandler,
 		listData: {tabs, data, activeTab},
 	} = props;
 	const currentList = useTabs(data, tabs, activeTab);
@@ -17,7 +17,7 @@ const TrendsList = (props) => {
 			data={currentList}
 			count={5}
 			renderFunc={(item, index) => <Card item={item} key={index} />}>
-			<Tabs onTabClick={onTabClick} tabs={tabs} activeTab={activeTab} />
+			<Tabs onTabClick={tabHandler} tabs={tabs} activeTab={activeTab} />
 		</List>
 	);
 };

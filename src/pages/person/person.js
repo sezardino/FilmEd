@@ -1,43 +1,28 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import {FamousList, WorksList} from './components';
 import {WORK_LIST_TYPE} from '../../const/const';
-import {useFull, useLoad} from '../../hooks';
-import {ActionCreator} from '../../reducer';
-import {sortByPopularity} from '../../services/utils';
+import {useFull} from '../../hooks';
 
 const PersonPage = (props) => {
-	const {getPerson, data, language, credits = {}} = props;
-	const {cast = [], crew = []} = credits;
-	const {full, changeFull} = useFull();
-	useLoad(getPerson, language);
-	const {
-		biography = '',
-		birthday,
-		deathday,
-		gender,
-		homepage,
-		knownFor,
-		name,
-		placeOfBirth,
-		photo,
-	} = data;
-	const biographyText = full
-		? biography
-		: biography.length > 0
-		? `${biography.slice(0, 300)} ...`
-		: `The are no information about this ${name}`;
+	const {data, castData, crewData, famousData} = props;
+	const {biography = '', birthday, deathday, gender, knownFor, name, placeOfBirth, photo} = data;
+	const [full, changeFull] = useFull();
+
+	const biographyText =
+		!full && biography.length > 300 ? `${biography.slice(0, 300)}...` : biography;
+
 	const showMore =
-		biography.length < 600 || full ? null : (
+		biography.length > 300 && !full ? (
 			<button className="biography__more" onClick={changeFull}>
 				Read more
 			</button>
-		);
+		) : null;
 	const hideMore = full ? (
 		<button className="biography__more" onClick={changeFull}>
 			Hide
 		</button>
 	) : null;
+
 	return (
 		<main className="person-page container">
 			<h1 className="hidden">Person Page</h1>
@@ -46,7 +31,7 @@ const PersonPage = (props) => {
 					<p className="img-wrapper information__image">
 						<img src={`http://image.tmdb.org/t/p/w400${photo}`} alt="person" />
 					</p>
-					<ul className="social information__social">
+					{/* <ul className="social information__social">
 						<li className="social__item">
 							<a href={homepage} className="social__link">
 								<img src="" alt="" />
@@ -67,7 +52,7 @@ const PersonPage = (props) => {
 								<img src="" alt="" />
 							</a>
 						</li>
-					</ul>
+					</ul> */}
 
 					<div className="information__wrapper">
 						<h2 className="information__title">Personal Data</h2>
@@ -111,33 +96,13 @@ const PersonPage = (props) => {
 				</section>
 				<section className="popularity">
 					<h2 className="popularity__title">Known for</h2>
-					<FamousList data={[...cast, ...crew].sort(sortByPopularity)} />
+					<FamousList data={famousData} />
 				</section>
-				{cast.length > 0 && <WorksList title={WORK_LIST_TYPE.ACTING} data={cast} />}
-				{crew.length > 0 && <WorksList title={WORK_LIST_TYPE.CREW} data={crew} />}
+				{castData.length > 0 && <WorksList title={WORK_LIST_TYPE.ACTING} data={castData} />}
+				{crewData.length > 0 && <WorksList title={WORK_LIST_TYPE.CREW} data={crewData} />}
 			</section>
 		</main>
 	);
 };
 
-const mapStateToProps = ({person, logic}) => {
-	return {
-		language: logic.languages.activeLanguage,
-		data: person.data,
-		credits: person.credits,
-		actingCredits: person.credits.cast,
-		crewCredits: person.credits.cast,
-	};
-};
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-	const {context, id} = ownProps;
-	return {
-		getPerson: () => {
-			context.getPerson(id).then((data) => dispatch(ActionCreator.GET_PERSON(data)));
-			context.getPersonCredits(id).then((data) => dispatch(ActionCreator.GET_PERSON_CREDITS(data)));
-		},
-	};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(PersonPage);
+export default PersonPage;
