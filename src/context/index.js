@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Api from '../services/';
+import Api from '../api';
 
 const MovieContext = React.createContext();
 
