@@ -1,4 +1,4 @@
-import {LANGUAGES} from '../const';
+import {LANGUAGES} from '../const/const';
 
 const initialState = {
 	languages: {activeLanguage: Object.keys(LANGUAGES)[0], languages: Object.keys(LANGUAGES)},

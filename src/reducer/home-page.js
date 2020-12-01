@@ -1,4 +1,4 @@
-import {tabs, SOURCE} from '../const';
+import {tabs, SOURCE} from '../const/const';
 
 const {POPULAR, TRENDS} = tabs;
 const initialState = {

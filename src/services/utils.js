@@ -1,5 +1,5 @@
 import {ActionCreator} from '../reducer/';
-import {TYPE} from '../const';
+import {TYPE} from '../const/const';
 
 const findTab = (tabs, active) => {
 	const values = Object.values(tabs);
