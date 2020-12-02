@@ -1,3 +1,5 @@
+import {api} from '../api';
+
 const initialState = {
 	searchQuery: '',
 	data: [],
@@ -13,6 +15,12 @@ const ActionCreator = {
 	SEARCH: (data) => ({type: ActionType.SEARCH, payload: data}),
 };
 
+const ThunkCreator = {
+	getSearchData: (query, language) => (dispatch) => {
+		api[language].getSearch(query).then((data) => dispatch(ActionCreator.SEARCH(data)));
+	},
+};
+
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ActionType.SEARCH_QUERY:
@@ -23,5 +31,5 @@ const reducer = (state = initialState, action) => {
 			return state;
 	}
 };
-export {ActionType, ActionCreator};
+export {ActionType, ActionCreator, ThunkCreator};
 export default reducer;

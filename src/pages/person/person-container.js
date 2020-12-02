@@ -1,18 +1,19 @@
 import React from 'react';
 import Person from './person';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer';
 import {useLoad} from '../../hooks';
 import {makeUniqueArr} from '../../services';
 import {sortByPopularity} from '../../services/utils';
+import {ThunkCreator} from '../../reducer';
 
 const PersonContainer = (props) => {
 	const {
-		getPerson,
+		getData,
 		language,
 		credits: {cast = [], crew = []},
+		id,
 	} = props;
-	useLoad(getPerson, language);
+	useLoad(() => getData(id, language), language);
 
 	const famousData = makeUniqueArr(cast, crew).sort(sortByPopularity);
 	const castData = makeUniqueArr(cast).sort(sortByPopularity);
@@ -31,14 +32,8 @@ const mapStateToProps = ({person, logic}) => {
 	};
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-	const {context, id} = ownProps;
-	return {
-		getPerson: () => {
-			context.getPerson(id).then((data) => dispatch(ActionCreator.GET_PERSON(data)));
-			context.getPersonCredits(id).then((data) => dispatch(ActionCreator.GET_PERSON_CREDITS(data)));
-		},
-	};
+const mapDispatchToProps = {
+	getData: ThunkCreator.getPersonData,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PersonContainer);

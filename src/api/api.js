@@ -171,7 +171,6 @@ class Api {
 	getSearch = async (query) => {
 		const data = await this.getResources(`${URL.SEARCH()}`, query);
 		const searchData = data.results.map(_transformSearchData);
-		console.log(data);
 		return {...data, results: [...searchData]};
 	};
 
@@ -186,4 +185,11 @@ class Api {
 	};
 }
 
+const api = {
+	EN: new Api(LANGUAGES.EN),
+	RU: new Api(LANGUAGES.RU),
+	PL: new Api(LANGUAGES.PL),
+};
+
+export {api};
 export default Api;

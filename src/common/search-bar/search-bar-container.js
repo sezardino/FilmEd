@@ -2,11 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer';
 import {useInput, useMovieHistory} from '../../hooks';
-import icon from './search.svg';
 import SearchBar from './search-bar';
 
 const SearchBarContainer = (props) => {
-	const {clickHandler, active, searchQuery, search} = props;
+	const {searchQuery, search} = props;
 	const history = useMovieHistory();
 	const [query, setQuery] = useInput(searchQuery);
 

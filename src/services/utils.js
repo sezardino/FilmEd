@@ -1,4 +1,3 @@
-import {ActionCreator} from '../reducer/';
 import {TYPE} from '../const/const';
 
 const findTab = (tabs, active) => {
@@ -7,48 +6,6 @@ const findTab = (tabs, active) => {
 	const index = values.findIndex((item) => item === active);
 	const current = keys[index];
 	return current;
-};
-
-const getData = (id, type, context, dispatch) => {
-	switch (type) {
-		case TYPE.MOVIE:
-			context
-				.getDetails(id, TYPE.MOVIE)
-				.then((data) => dispatch(ActionCreator.GET_SHOW_DATA(data)));
-			context
-				.getTrailers(id, TYPE.MOVIE)
-				.then((data) => dispatch(ActionCreator.GET_TRAILERS(data)));
-			context
-				.getKeywords(id, TYPE.MOVIE)
-				.then((data) => dispatch(ActionCreator.GET_KEYWORDS(data)));
-
-			context.getCast(id, TYPE.MOVIE).then((data) => dispatch(ActionCreator.GET_CAST(data)));
-			context.getReviews(id, TYPE.MOVIE).then((data) => dispatch(ActionCreator.GET_REVIEWS(data)));
-			context
-				.getRecommendations(id, TYPE.MOVIE)
-				.then((data) => dispatch(ActionCreator.GET_RECOMMENDATIONS(data)));
-			context
-				.getExternalIds(id, TYPE.MOVIE)
-				.then((data) => dispatch(ActionCreator.GET_EXTERNAL_IDS(data)));
-			break;
-		case TYPE.TV:
-			context.getDetails(id, TYPE.TV).then((data) => dispatch(ActionCreator.GET_SHOW_DATA(data)));
-			context.getTrailers(id, TYPE.TV).then((data) => {
-				dispatch(ActionCreator.GET_TRAILERS(data));
-			});
-			context.getKeywords(id, TYPE.TV).then((data) => dispatch(ActionCreator.GET_KEYWORDS(data)));
-			context.getCast(id, TYPE.TV).then((data) => dispatch(ActionCreator.GET_CAST(data)));
-			context
-				.getExternalIds(id, TYPE.TV)
-				.then((data) => dispatch(ActionCreator.GET_EXTERNAL_IDS(data)));
-			context.getReviews(id, TYPE.TV).then((data) => dispatch(ActionCreator.GET_REVIEWS(data)));
-			context
-				.getRecommendations(id, TYPE.TV)
-				.then((data) => dispatch(ActionCreator.GET_RECOMMENDATIONS(data)));
-			break;
-		default:
-			break;
-	}
 };
 
 const linkTo = (type, id) => {
@@ -103,4 +60,4 @@ const makeUniqueArr = (arr1 = [], arr2 = []) => {
 	return newArr;
 };
 
-export {findTab, getData, sortByPopularity, shownList, sortByDate, linkTo, makeUniqueArr};
+export {findTab, sortByPopularity, shownList, sortByDate, linkTo, makeUniqueArr};

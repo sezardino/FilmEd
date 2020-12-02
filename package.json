@@ -1,7 +1,7 @@
 {
   "name": "filmed",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "homepage": "https://sezardino.github.io/FilmEd",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -15,7 +15,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "react-youtube": "^7.12.0",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

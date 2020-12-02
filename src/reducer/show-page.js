@@ -1,3 +1,6 @@
+import {api} from '../api';
+import {TYPE} from '../const/const';
+
 const initialState = {
 	data: {},
 };
@@ -20,6 +23,45 @@ const ActionCreator = {
 	GET_EXTERNAL_IDS: (data) => ({type: ActionType.GET_EXTERNAL_IDS, payload: data}),
 	GET_RECOMMENDATIONS: (data) => ({type: ActionType.GET_RECOMMENDATIONS, payload: data}),
 	GET_TRAILERS: (data) => ({type: ActionType.GET_TRAILERS, payload: data}),
+};
+
+const ThunkCreator = {
+	getShowData: (language, id, type) => (dispatch) => {
+		const Api = api[language];
+		switch (type) {
+			case TYPE.MOVIE:
+				Api.getDetails(id, TYPE.MOVIE).then((data) => dispatch(ActionCreator.GET_SHOW_DATA(data)));
+				Api.getTrailers(id, TYPE.MOVIE).then((data) => dispatch(ActionCreator.GET_TRAILERS(data)));
+				Api.getKeywords(id, TYPE.MOVIE).then((data) => dispatch(ActionCreator.GET_KEYWORDS(data)));
+
+				Api.getCast(id, TYPE.MOVIE).then((data) => dispatch(ActionCreator.GET_CAST(data)));
+				Api.getReviews(id, TYPE.MOVIE).then((data) => dispatch(ActionCreator.GET_REVIEWS(data)));
+				Api.getRecommendations(id, TYPE.MOVIE).then((data) =>
+					dispatch(ActionCreator.GET_RECOMMENDATIONS(data))
+				);
+				Api.getExternalIds(id, TYPE.MOVIE).then((data) =>
+					dispatch(ActionCreator.GET_EXTERNAL_IDS(data))
+				);
+				break;
+			case TYPE.TV:
+				Api.getDetails(id, TYPE.TV).then((data) => dispatch(ActionCreator.GET_SHOW_DATA(data)));
+				Api.getTrailers(id, TYPE.TV).then((data) => {
+					dispatch(ActionCreator.GET_TRAILERS(data));
+				});
+				Api.getKeywords(id, TYPE.TV).then((data) => dispatch(ActionCreator.GET_KEYWORDS(data)));
+				Api.getCast(id, TYPE.TV).then((data) => dispatch(ActionCreator.GET_CAST(data)));
+				Api.getExternalIds(id, TYPE.TV).then((data) =>
+					dispatch(ActionCreator.GET_EXTERNAL_IDS(data))
+				);
+				Api.getReviews(id, TYPE.TV).then((data) => dispatch(ActionCreator.GET_REVIEWS(data)));
+				Api.getRecommendations(id, TYPE.TV).then((data) =>
+					dispatch(ActionCreator.GET_RECOMMENDATIONS(data))
+				);
+				break;
+			default:
+				break;
+		}
+	},
 };
 
 const reducer = (state = initialState, action) => {
@@ -50,5 +92,5 @@ const reducer = (state = initialState, action) => {
 	}
 };
 
-export {ActionType, ActionCreator};
+export {ActionType, ActionCreator, ThunkCreator};
 export default reducer;
