@@ -7,10 +7,9 @@ import Footer from './common/footer';
 import {HomePage, PersonPage, SearchPage, ShowPage} from './pages';
 
 import './Sass/app.scss';
-import {useMovieContext, useMovieHistory} from './hooks';
+import {useMovieHistory} from './hooks';
 
 const App = () => {
-	const context = useMovieContext();
 	const history = useMovieHistory();
 	return (
 		<React.Fragment>
@@ -23,7 +22,7 @@ const App = () => {
 						match: {
 							params: {id},
 						},
-					}) => <ShowPage dataId={id} context={context} history={history} />}
+					}) => <ShowPage dataId={id} history={history} />}
 				/>
 				<Route
 					path="/movie/:id?"
@@ -32,7 +31,7 @@ const App = () => {
 						match: {
 							params: {id},
 						},
-					}) => <ShowPage dataId={id} context={context} history={history} />}
+					}) => <ShowPage dataId={id} history={history} />}
 				/>
 				<Route
 					path="/search/:query?"
@@ -41,7 +40,7 @@ const App = () => {
 						match: {
 							params: {query},
 						},
-					}) => <SearchPage query={query} context={context} />}
+					}) => <SearchPage query={query} />}
 				/>
 				<Route
 					path="/person/:id?"
@@ -50,9 +49,9 @@ const App = () => {
 						match: {
 							params: {id},
 						},
-					}) => <PersonPage id={id} context={context} />}
+					}) => <PersonPage id={id} />}
 				/>
-				<Route exact render={() => <HomePage context={context} history={history} />} />
+				<Route exact render={() => <HomePage history={history} />} />
 			</Switch>
 			<Footer />
 		</React.Fragment>
