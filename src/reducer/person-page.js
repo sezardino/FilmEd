@@ -1,3 +1,4 @@
+import {api} from '../api';
 const initialState = {
 	data: {},
 	credits: [],
@@ -13,6 +14,15 @@ const ActionCreator = {
 	GET_PERSON_CREDITS: (data) => ({type: ActionType.GET_PERSON_CREDITS, payload: data}),
 };
 
+const ThunkCreator = {
+	getPersonData: (id, language) => (dispatch) => {
+		api[language].getPerson(id).then((data) => dispatch(ActionCreator.GET_PERSON(data)));
+		api[language]
+			.getPersonCredits(id)
+			.then((data) => dispatch(ActionCreator.GET_PERSON_CREDITS(data)));
+	},
+};
+
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ActionType.GET_PERSON:
@@ -25,5 +35,5 @@ const reducer = (state = initialState, action) => {
 	}
 };
 
-export {ActionType, ActionCreator};
+export {ActionType, ActionCreator, ThunkCreator};
 export default reducer;

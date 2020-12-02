@@ -1,6 +1,8 @@
 import {tabs, SOURCE} from '../const/const';
+import {api} from '../api';
 
 const {POPULAR, TRENDS} = tabs;
+
 const initialState = {
 	popular: {
 		data: {onTv: [], inTheater: []},
@@ -21,9 +23,17 @@ const ActionType = {
 };
 
 const ActionCreator = {
-	GET_DATA: (data, source) => ({type: ActionType.GET_DATA, payload: data, source: source}),
+	GET_DATA: (data) => ({type: ActionType.GET_DATA, payload: data}),
 	GET_HERO_BG: () => ({type: ActionType.GET_HERO_BG}),
 	CHANGE_TAB: (tab) => ({type: ActionType.CHANGE_TAB, payload: tab}),
+};
+
+const ThunkCreator = {
+	getHPData: (language) => async (dispatch) => {
+		await api[language].getPopular().then((data) => dispatch(ActionCreator.GET_DATA(data)));
+		await api[language].getTrends().then((data) => dispatch(ActionCreator.GET_DATA(data)));
+		dispatch(ActionCreator.GET_HERO_BG());
+	},
 };
 
 const changeTab = (state, tab) => {
@@ -79,5 +89,5 @@ const reducer = (state = initialState, action) => {
 	}
 };
 
-export {ActionCreator, ActionType};
+export {ActionCreator, ActionType, ThunkCreator};
 export default reducer;

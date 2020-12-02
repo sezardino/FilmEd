@@ -6,7 +6,7 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import ErrorBoundary from './common/error-boundary/';
 
 import App from './app';
-import store from './store';
+import store from './reducer';
 
 ReactDOM.render(
 	<Provider store={store}>

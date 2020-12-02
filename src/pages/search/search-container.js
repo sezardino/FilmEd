@@ -1,16 +1,17 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer';
 import {useLoad, useActive} from '../../hooks';
 import {TYPE} from '../../const/const';
 import Search from './search';
+import {ThunkCreator} from '../../reducer';
 
 const SEARCH_TABS = {movies: TYPE.MOVIE, people: TYPE.PERSON, tvShows: TYPE.TV};
 
 const SearchContainer = (props) => {
-	const {data = [], searchQuery, getData, query, language} = props;
+	const {data = [], searchQuery, getSearchData, query, language} = props;
 	const {results = []} = data;
-	useLoad(() => getData(searchQuery || query), [searchQuery || query, language]);
+
+	useLoad(() => getSearchData(searchQuery || query, language), [searchQuery || query, language]);
 	const [active, activeChange] = useActive('movies');
 	const resultList = results.filter((item) => item.type === SEARCH_TABS[active]);
 
@@ -25,11 +26,8 @@ const mapStateToProps = ({search, logic}) => {
 	};
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-	getData: (query) => {
-		const {context} = ownProps;
-		context.getSearch(query).then((data) => dispatch(ActionCreator.SEARCH(data)));
-	},
-});
+const mapDispatchToProps = {
+	getSearchData: ThunkCreator.getSearchData,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchContainer);
