@@ -1,7 +1,8 @@
 import React from 'react';
-import {FamousList, WorksList} from './components';
+import {WorksList} from './components';
 import {WORK_LIST_TYPE} from '../../const/const';
 import {useFull} from '../../hooks';
+import List from '../../common/list';
 
 const PersonPage = (props) => {
 	const {data, castData, crewData, famousData} = props;
@@ -96,7 +97,7 @@ const PersonPage = (props) => {
 				</section>
 				<section className="popularity">
 					<h2 className="popularity__title">Known for</h2>
-					<FamousList data={famousData} />
+					<List data={famousData} count={4} />
 				</section>
 				{castData.length > 0 && <WorksList title={WORK_LIST_TYPE.ACTING} data={castData} />}
 				{crewData.length > 0 && <WorksList title={WORK_LIST_TYPE.CREW} data={crewData} />}
